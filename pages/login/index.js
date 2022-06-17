@@ -2,7 +2,7 @@ import { Col, Row, Image, Form, Button } from "react-bootstrap";
 import Link from "next/link";
 import { LoginImage } from "../../components";
 import React from "react";
-import { LoginUser } from '../../lib/auth';
+import { LoginUser } from '../../lib/auth'; 
 
 <<<<<<< HEAD
 class Login extends React.Component {
