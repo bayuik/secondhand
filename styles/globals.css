@@ -92,3 +92,88 @@ a {
   }
 }
 
+.input-box{
+  position: relative;
+}
+
+.input-box i {
+  position: absolute;
+  right: 13px;
+  top:15px;
+  color:#ced4da;
+
+}
+
+.form-control{
+  height: 50px;
+  background-color:#eeeeee69;
+}
+
+.form-control:focus{
+  background-color: #eeeeee69;
+  box-shadow: none;
+  border-color: #eee;
+}
+
+.logo-image{
+  position: absolute;
+  width: 100px;
+  height: 34px;
+}
+
+
+.navbar-brand{
+  margin-bottom: 33px !important;
+}
+
+.logo{
+    margin-bottom: 35px !important;
+}
+
+.product_img{
+  width: 550px;
+  height: 386px;
+}
+
+.seller_img{
+  width: 40px;
+  height: 40px;
+}
+
+.spacing{
+  margin-top: 110px;
+  margin-bottom: 100px;
+}
+
+.search-box{
+  height: 46px;
+  margin-left: 110px;
+  width: 444px !important; 
+  border-radius: 16px !important;
+  background: #EEEEEE !important;
+}
+
+.search{
+  margin-top: 3px !important;
+}
+
+.kota{
+  font-size: 10px;
+}
+
+.card-size{
+  height: 80px;
+}
+
+.deskripsi{
+  font-style: 14px;
+  color:gray;
+}
+
+.icons{
+  height: 20px;
+  width: 20px;
+  padding: 10px;
+}
+
+
