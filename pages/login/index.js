@@ -20,7 +20,7 @@ class Login extends React.Component {
       event.preventDefault();
       LoginUser(email,password);
     };
-     
+    
     render() {
       return(
         <Row>
