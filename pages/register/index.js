@@ -1,8 +1,20 @@
 import { Col, Row, Image, Form, Button } from "react-bootstrap";
 import Link from "next/link";
 import { RegisterImage } from "../../components";
+import axios from "axios";
 
 const Register = () => {
+  axios.post('/http://localhost:8000/register', {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
   return (
     <Row>
       <RegisterImage />
