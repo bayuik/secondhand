@@ -43,18 +43,10 @@ function Product() {
                       <Image src="/1.png" alt="image1" className="product_img rounded-3"></Image>
                     </div>
                     <div>
-                      <Image src="/2.png" alt="image2" className="product_img rounded-3"></Image>
+                      <Image src="/1.png" alt="image2" className="product_img rounded-3"></Image>
                     </div>
                     <div>
-                      <Image src="/3.png" alt="image3" className="product_img rounded-3"></Image>
-    
-                    </div>
-                    <div>
-                      <Image src="/4.png" alt="image4" className="product_img rounded-3"></Image>
-    
-                    </div>
-                    <div>
-                      <Image src="/5.png" alt="image5" className="product_img rounded-3"></Image>
+                      <Image src="/1.png" alt="image3" className="product_img rounded-3"></Image>
                     </div>
                 </Carousel>
             </Col>
