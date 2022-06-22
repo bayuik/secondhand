@@ -29,6 +29,12 @@ a {
 
 .purple-bg {
   background-color: #7126b5 !important;
+  border-color: #7126b5 !important;
+}
+
+.lilac-bg {
+  background-color: #d6c1ec!important;
+  border-color: #d6c1ec!important;
 }
 
 .purple-text{
@@ -48,6 +54,10 @@ a {
 
 .custom-rounded {
   border-radius: 16px !important;
+}
+
+.btn-rounded{
+  border-radius: 10px !important;
 }
 
 .plus-icon{
@@ -79,30 +89,130 @@ a {
   margin-left: 100px;
 }
 
-.navbar {
-  margin-top: 27px;
+.nav-bar{
+
 }
 
-.navbar .navbar-brand {
-  background: #4B1979;
-
-width: 100px;
-height: 34px;
-left: 136px;
-top: 27px;
-margin-right: 24px;
+.input-box{
+  position: relative;
 }
+
+.input-box i {
+  position: absolute;
+  right: 13px;
+  top:15px;
+  color:#ced4da;
+
+}
+
+.form-control{
+  height: 50px;
+  background-color:#eeeeee69;
+}
+
+.form-control:focus{
+  background-color: #eeeeee69;
+  box-shadow: none;
+  border-color: #eee;
+}
+
+.logo-image{
+  position: absolute;
+  width: 100px;
+  height: 34px;
+}
+
+
+.navbar-brand{
+  margin-bottom: 33px !important;
+}
+
+.logo{
+    margin-bottom: 35px !important;
+}
+
+.product_img{
+  width: 550px;
+  height: 386px;
+}
+
+.seller_img{
+  width: 40px;
+  height: 40px;
+}
+
+.spacing{
+  margin-top: 100px !important;
+  margin-bottom: 100px !important;
+}
+
+.search-box{
+  height: 40px;
+  margin-left: 110px;
+  width: 300px !important; 
+  border-radius: 16px !important;
+  background: #EEEEEE !important;
+}
+
+.font-control{
+  font-size: 12px !important;
+}
+
+.font-14{
+  font-size: 14px !important;
+}
+
+.card-size{
+  height: 80px;
+}
+
+.deskripsi{
+  font-style: 14px;
+  color:gray;
+}
+
+.icons{
+  height: 20px;
+  width: 20px;
+  padding: 10px;
+}
+
+.btn-jual{
+  position: fixed;
+  bottom: 0px;
+  padding: 20px;
+
+}
+
 
 @media only screen and (max-width: 480px){
   .title-visible{
     visibility: visible !important;
   }
-
+  
 }
 
 @media only screen and (min-width: 768px) {
   .title-visible{
-    visibility: hidden;
+    visibility: hidden ;
   }
 }
 
+@media only screen and (max-width: 768px) {
+  .invisible-content{
+    visibility: hidden !important;
+  }
+  .product-img{
+    margin-top: -110px !important;
+  }
+  .card-product{
+    width: 400px;
+    border-radius: 25px !important;
+    margin-top: -90px;
+  }
+  .card-description{
+    border-radius: 25px !important;
+    width: 400px;
+  }
+
+}
