@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-function InfoProduct() {
+function infoProduct() {
 
   const [image, setImage] = useState({faPlus});
   const [saveImage, setSaveImage] = useState(null);
@@ -77,4 +77,4 @@ function InfoProduct() {
 };
 
 
-export default InfoProduct;
+export default infoProduct;

@@ -9,7 +9,7 @@ import { useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
-function Product() {
+function product() {
 
 
   return (
@@ -115,4 +115,4 @@ function Product() {
 };
 
 
-export default Product;
+export default product;
