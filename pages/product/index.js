@@ -18,8 +18,10 @@ function Product() {
           <Navbar.Brand href="#"><LogoImage /></Navbar.Brand>
           <Nav className="me-auto">
             <Form className="d-flex">
-              <Form.Control type="search" placeholder="Cari di sini..." className="search-box me-auto" aria-label="Search"/>
-              <FontAwesomeIcon icon={faSearch} id="btnIcon" className="" />
+              <div className="search-box">
+                <Form.Control type="search" placeholder="Cari di sini..." className=" sbox me-auto" aria-label="Search"/>
+                <FontAwesomeIcon icon={faSearch} id="btnIcon"/>
+              </div>
             </Form>
           </Nav>
           
@@ -53,27 +55,27 @@ function Product() {
             <Col sm={4}>
               <Card className="card-product">
                 <Card.Body>
-                  <Card.Title>Jam Tangan Casio</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">Aksesoris</Card.Subtitle>
-                  <Card.Text>
+                  <Card.Title className="font-14">Jam Tangan Casio</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted font-control">Aksesoris</Card.Subtitle>
+                  <Card.Text className="font-14">
                     Rp. 250.000
                   </Card.Text>
                   <div className="d-grid gap-2 mt-4">
-                  <Button className="text-white purple-bg custom-rounded p-2" type="button">Terbitakan</Button>
-                  <Button className="purple-outline custom-rounded p-2" type="button">Edit</Button>
+                  <Button className="text-white purple-bg custom-rounded p-2 font-14" type="button">Terbitakan</Button>
+                  <Button className="purple-outline custom-rounded p-2 font-14" type="button">Edit</Button>
                   </div>
                 </Card.Body>
               </Card>
 
               <Card className="mt-3 card-size card-product">
                 <Card.Body>
-                  <div class="row">
-                    <div class="col-3">
-                      <Image src="/penjual1.png" alt="penjual1"className="seller_img rounded-3"></Image>
+                  <div className="row">
+                    <div className="col-3">
+                      <Image src="/penjual1.png" alt="penjual1" className="seller_img rounded-3"></Image>
                     </div>
                     <div class="col">
-                      <Card.Title>Nama Penjual</Card.Title>
-                      <Card.Subtitle className="mb-2 text-muted kota">Kota</Card.Subtitle>
+                      <Card.Title className="font-14">Nama Penjual</Card.Title>
+                      <Card.Subtitle className="mb-2 text-muted kota font-control">Kota</Card.Subtitle>
                     </div>
                   </div>
                 </Card.Body>
