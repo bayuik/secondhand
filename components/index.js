@@ -1,7 +1,5 @@
 import LoginImage from "./LoginImage";
-import RegisterImage from "./RegisterImage";
 import LogoImage from "./LogoImage";
+import NavbarStandard from "./NavbarStandard";
 
-export {
-  LoginImage,RegisterImage,LogoImage,
-}
+export { LoginImage, LogoImage, NavbarStandard };

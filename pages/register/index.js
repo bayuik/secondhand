@@ -1,6 +1,6 @@
-import { Col, Row, Image, Form, Button } from "react-bootstrap";
+import { Col, Row, Form, Button } from "react-bootstrap";
 import Link from "next/link";
-import { RegisterImage } from "../../components";
+import { LoginImage } from "../../components";
 import axios from "axios";
 
 const Register = () => {
@@ -17,7 +17,7 @@ const Register = () => {
 
   return (
     <Row>
-      <RegisterImage />
+      <LoginImage />
       <Col md={6} className="my-auto">
         <div className="mx-auto w-75">
           <h1 className="fw-bold">Daftar</h1>

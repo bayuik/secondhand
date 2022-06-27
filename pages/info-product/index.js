@@ -1,35 +1,24 @@
-import { Col, Row, Image, Form, Button, Nav, Navbar, Container } from "react-bootstrap";
+import { Col, Row, Form } from "react-bootstrap";
 import Link from "next/link";
-import { LogoImage } from "../../components";
+import { NavbarStandard } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 function InfoProduct() {
-
-  const [image, setImage] = useState({faPlus});
+  const [image, setImage] = useState({ faPlus });
   const [saveImage, setSaveImage] = useState(null);
 
-  function handleUploadChange(e){
+  function handleUploadChange(e) {
     console.log(e.target.files[0]);
     let Uploaded = e.target.files[0];
     setImage(URL.createObjectURL(Uploaded));
     setSaveImage(Uploaded);
   }
 
-
   return (
     <Row>
-      <Navbar expand="lg" variant="light" bg="body" fixed="top" className="shadow p-2 mb-5 rounded ">
-        <Container>
-          <Navbar.Brand href="#" className="invisible-content"><LogoImage /></Navbar.Brand>
-          <div className="mx-auto ">
-                <h5 className="fw-bold title-visible">Lengkapi Detail Product</h5>
-          </div>
-        </Container>
-      </Navbar>
+      <NavbarStandard title="" />
       <Col md={6} className="my-auto mx-auto">
         <div className="mx-auto w-75 spacing">
           <Form>
@@ -53,9 +42,9 @@ function InfoProduct() {
               <Form.Label className="fw-bold">Foto Produk</Form.Label>
               <br></br>
               <label htmlFor="file-upload">
-              <FontAwesomeIcon icon={faPlus} id="btnIcon" className="plus-icon" />
+                <FontAwesomeIcon icon={faPlus} id="btnIcon" className="plus-icon" />
               </label>
-              <input id="file-upload" onChange={handleUploadChange} type="file" className="custom-rounded p-2 image-file"/>
+              <input id="file-upload" onChange={handleUploadChange} type="file" className="custom-rounded p-2 image-file" />
             </Form.Group>
             <div className="d-grid gap-2 mt-4">
               <div className="btn-group" role="group">
@@ -72,7 +61,6 @@ function InfoProduct() {
       </Col>
     </Row>
   );
-};
-
+}
 
 export default InfoProduct;

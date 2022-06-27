@@ -2,28 +2,28 @@ import { Col, Row, Image, Form, Button } from "react-bootstrap";
 import Link from "next/link";
 import { LoginImage } from "../../components";
 import React from "react";
-import { LoginUser } from '../../lib/auth';
+import { LoginUser } from "../../lib/auth";
 
 class Login extends React.Component {
-    state ={
-        email: '',
-        password: ''
-    };
+  state = {
+    email: "",
+    password: "",
+  };
 
-    handleChange = event =>{
-        this.setState({[event.target.name]: event.target.value});
-    }
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
-    handleSubmit = event => {
-      const { email,password } = this.state;
+  handleSubmit = (event) => {
+    const { email, password } = this.state;
 
-      event.preventDefault();
-      LoginUser(email,password);
-    };
-    
-    render() {
-      return(
-        <Row>
+    event.preventDefault();
+    LoginUser(email, password);
+  };
+
+  render() {
+    return (
+      <Row>
         <LoginImage />
         <Col md={6} className="my-auto">
           <div className="mx-auto w-75">
@@ -51,9 +51,8 @@ class Login extends React.Component {
             </div>
           </div>
         </Col>
-      </Row> 
-      )
-    }
-    
+      </Row>
+    );
+  }
 }
 export default Login;
