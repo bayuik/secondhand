@@ -43,7 +43,7 @@ const Register = () => {
           <div className="text-center mt-4">
             <p className="d-inline">Sudah punya akun? </p>
             <Link href="/login">
-              <a className="purple-text fw-bold text-decoration-none">Masuk si sini</a>
+              <a className="purple-text fw-bold text-decoration-none">Masuk di sini</a>
             </Link>
           </div>
         </div>

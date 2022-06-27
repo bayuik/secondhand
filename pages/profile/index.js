@@ -1,6 +1,5 @@
-import { Col, Row, Image, Form, Button, Nav, Navbar } from "react-bootstrap";
-import Link from "next/link";
-import { LogoImage, NavbarStandard } from "../../components";
+import { Col, Row, Form, Button } from "react-bootstrap";
+import { NavbarStandard } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";

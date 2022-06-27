@@ -1,4 +1,4 @@
-import { Col,Image } from "react-bootstrap";
+import { Col, Image } from "react-bootstrap";
 const LogoImage = () => {
   return (
     <Col md={2}>

@@ -1,5 +1,4 @@
 import { Col, Row, Form } from "react-bootstrap";
-import Link from "next/link";
 import { NavbarStandard } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -52,7 +51,7 @@ function InfoProduct() {
                   Preview
                 </button>
                 <button className="btn text-white purple-bg custom-rounded p-2 ms-2" type="button">
-                  Terbitakan
+                  Terbitkan
                 </button>
               </div>
             </div>
