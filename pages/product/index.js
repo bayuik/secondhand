@@ -10,6 +10,7 @@ const Product = () => {
   return (
     <Row>
       <div className="invisible-content">
+<<<<<<< HEAD
         <Navbar expand="lg" variant="light" bg="body" fixed="top" className="shadow p-2 mb-5 rounded nav-bar">
           <Container>
             <Navbar.Brand href="#">
@@ -31,6 +32,29 @@ const Product = () => {
             </ListGroup>
           </Container>
         </Navbar>
+=======
+      <Navbar expand="lg" variant="light" bg="body" fixed="top" className="shadow p-2 mb-5 rounded nav-bar">
+        <Container>
+          <Navbar.Brand href="#"><LogoImage /></Navbar.Brand>
+          <Nav className="me-auto">
+            <Form className="d-flex">
+              <div className="search-box">
+                <Form.Control type="search" placeholder="Cari di sini..." className=" sbox me-auto" aria-label="Search"/>
+                <FontAwesomeIcon icon={faSearch} id="btnIcon"/>
+              </div>
+            </Form>
+          </Nav>
+          
+          <ListGroup horizontal>
+          <div className="ms-auto">
+            <FontAwesomeIcon icon={faList} id="btnIcon" className="icons" />
+            <FontAwesomeIcon icon={faBell} id="btnIcon" className="icons" />
+            <FontAwesomeIcon icon={faUser} id="btnIcon" className="icons" />
+          </div>
+          </ListGroup>
+        </Container>
+      </Navbar>
+>>>>>>> 15446657886cd07e7602d2fb5cc4f712c8f61ac9
       </div>
 
       <div className="spacing mx-auto">
@@ -52,6 +76,7 @@ const Product = () => {
             <Col sm={4}>
               <Card className="card-product">
                 <Card.Body>
+<<<<<<< HEAD
                   <Card.Title>Jam Tangan Casio</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">Aksesoris</Card.Subtitle>
                   <Card.Text>Rp. 250.000</Card.Text>
@@ -62,6 +87,16 @@ const Product = () => {
                     <Button className="purple-outline custom-rounded p-2" type="button">
                       Edit
                     </Button>
+=======
+                  <Card.Title className="font-14">Jam Tangan Casio</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted font-control">Aksesoris</Card.Subtitle>
+                  <Card.Text className="font-14">
+                    Rp. 250.000
+                  </Card.Text>
+                  <div className="d-grid gap-2 mt-4">
+                  <Button className="text-white purple-bg custom-rounded p-2 font-14" type="button">Terbitakan</Button>
+                  <Button className="purple-outline custom-rounded p-2 font-14" type="button">Edit</Button>
+>>>>>>> 15446657886cd07e7602d2fb5cc4f712c8f61ac9
                   </div>
                 </Card.Body>
               </Card>
@@ -72,9 +107,15 @@ const Product = () => {
                     <div className="col-3">
                       <Image src="/penjual1.png" alt="penjual1" className="seller_img rounded-3"></Image>
                     </div>
+<<<<<<< HEAD
                     <div className="col">
                       <Card.Title>Nama Penjual</Card.Title>
                       <Card.Subtitle className="mb-2 text-muted kota">Kota</Card.Subtitle>
+=======
+                    <div class="col">
+                      <Card.Title className="font-14">Nama Penjual</Card.Title>
+                      <Card.Subtitle className="mb-2 text-muted kota font-control">Kota</Card.Subtitle>
+>>>>>>> 15446657886cd07e7602d2fb5cc4f712c8f61ac9
                     </div>
                   </div>
                 </Card.Body>

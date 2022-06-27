@@ -151,7 +151,16 @@ a {
   margin-left: 110px;
   width: 300px !important; 
   border-radius: 16px !important;
-  background: #EEEEEE !important;
+  background-color: #EEEEEE !important;
+	display: flex;
+	align-items: center;
+	padding: 20px;
+}
+
+.sbox{
+  background-color: #EEEEEE !important; 
+  border: none !important;
+  height: 40px;
 }
 
 .font-control{
