@@ -2,7 +2,6 @@ import { Col, Row, Form, Button } from "react-bootstrap";
 import Link from "next/link";
 import { LoginImage } from "../../components";
 import React from "react";
-import { LoginUser } from "../../lib/auth";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 
@@ -10,15 +9,17 @@ const Login = () => {
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = async (data) => {
     const { email, password } = data;
-    const res = await axios.post("https://api-secondhand-fsw.herokuapp.com/login", {
-      email,
-      password,
-    });
-    if (res.data.status == "success") {
-      alert("Successfully Logged In");
-    } else {
-      alert(res.data.message);
-    }
+    const res = await axios
+      .post("https://api-secondhand-fsw.herokuapp.com/login", {
+        email,
+        password,
+      })
+      .then((val) => {
+        alert("Login Success");
+      })
+      .catch((err) => {
+        alert("Login Failed");
+      });
   };
   return (
     <Row>

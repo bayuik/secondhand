@@ -5,21 +5,23 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 
 const Register = () => {
-  const {register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const onSubmit = async (data) => {
-    const {name, email, password } = data;
-    const res = await axios.post("https://api-secondhand-fsw.herokuapp.com/register", {
-      name,
-      email,
-      password,
-    });
-    if (res.data.status == "success") {
-      alert("Successfully Registered");
-      window.location.href = "/login";
-    } else {
-      alert(res.data.message);
-    }
-  }
+    const { name, email, password } = data;
+    const res = await axios
+      .post("https://api-secondhand-fsw.herokuapp.com/register", {
+        name,
+        email,
+        password,
+      })
+      .then((val) => {
+        alert("Register Success");
+        window.location.href = "/login";
+      })
+      .catch((err) => {
+        alert("Register Failed");
+      });
+  };
 
   return (
     <Row>
@@ -27,7 +29,7 @@ const Register = () => {
       <Col md={6} className="my-auto">
         <div className="mx-auto w-75">
           <h1 className="fw-bold">Daftar</h1>
-          <Form onSubmit={handleSubmit(onSubmit)} >
+          <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="name" className="mt-3">
               <Form.Label>Nama</Form.Label>
               <Form.Control type="text" placeholder="Nama Lengkap" className="custom-rounded p-2" {...register("name")} />
