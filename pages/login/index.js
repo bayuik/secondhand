@@ -1,9 +1,10 @@
 import { Col, Row, Form, Button } from "react-bootstrap";
 import Link from "next/link";
 import { LoginImage } from "../../components";
-import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -15,10 +16,26 @@ const Login = () => {
         password,
       })
       .then((val) => {
-        alert("Login Success");
+        toast.success("Login Success", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
       .catch((err) => {
-        alert("Login Failed");
+        toast.error("Invalid Email or Password", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
   return (
@@ -27,6 +44,7 @@ const Login = () => {
       <Col md={6} className="my-auto">
         <div className="mx-auto w-75">
           <h1 className="fw-bold">Masuk</h1>
+          <ToastContainer />
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="email" className="mt-3">
               <Form.Label>Email</Form.Label>
