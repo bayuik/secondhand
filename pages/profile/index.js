@@ -1,4 +1,4 @@
-import { Col, Row, Form, Button } from "react-bootstrap";
+import { Col, Row, Form } from "react-bootstrap";
 import { NavbarStandard } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
@@ -6,8 +6,18 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import React from "react";
+import ImageUploading from 'react-images-uploading';
 
 const Profile = () => {
+  const [images, setImages] = React.useState([]);
+  const maxNumber = 69;
+
+  const onChange = (imageList, addUpdateIndex) => {
+    // data for submit
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList);
+  };
+  
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = async (data) => {
     const { name, city, address, phone, photo } = data;
@@ -44,10 +54,26 @@ const Profile = () => {
       <Col md={6} className="my-auto mx-auto">
         <div className="spacing">
           <div className="mx-auto my-auto CamIcon">
-            <label htmlFor="file-upload">
-              <FontAwesomeIcon icon={faCamera} id="btnIcon" className="camera-icon" />
-            </label>
-            <input id="file-upload" onChange={handleUploadChange} type="file" className="custom-rounded p-2 image-file" {...register("photo")}/>
+          <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url">
+              {({imageList, onImageUpload, onImageUpdate, onImageRemove, isDragging, dragProps}) => (
+              // write your building UI
+                <div className="upload__image-wrapper">
+                  <label htmlFor="file-upload">
+                    <FontAwesomeIcon icon={faCamera} className="camera-icon" style={isDragging ? { color: 'red' } : undefined}  onClick={onImageUpload}{...dragProps} {...register("photo")}/>
+                  </label>
+                  {imageList.map((image, index) => (
+                    <div key={index} className="image-item">
+                      <img src={image['data_url']} alt="" width={130} height={130} />
+                      <input id="file-upload" type="file" className="custom-rounded p-2 image-file"/>
+                      <div className="image-item__btn-wrapper">
+                        <button onClick={() => onImageUpdate(index)}>Update</button>
+                        <button onClick={() => onImageRemove(index)}>Remove</button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </ImageUploading>
           </div>
           <div className="mx-auto w-75">
             <Form onSubmit={handleSubmit(onSubmit)}>
