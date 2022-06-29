@@ -1,4 +1,4 @@
-import { Col, Row, Form, Button } from "react-bootstrap";
+import { Col, Row, Form } from "react-bootstrap";
 import Link from "next/link";
 import { LoginImage } from "../../components";
 import React from "react";
