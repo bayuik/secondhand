@@ -3,6 +3,8 @@ import Link from "next/link";
 import { LoginImage } from "../../components";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -15,11 +17,27 @@ const Register = () => {
         password,
       })
       .then((val) => {
-        alert("Register Success");
+        toast.success("Register Success", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         window.location.href = "/login";
       })
       .catch((err) => {
-        alert("Register Failed");
+        toast.error("Register Failed", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
 
