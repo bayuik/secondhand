@@ -6,6 +6,12 @@ config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
+  // return (
+  //   <div>
+  //     <Product />
+  //   </div>
+    
+  // )
 }
 
 export default MyApp
