@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faSearch, faUser, faList, faBell,faArrowRightToBracket
 } from "@fortawesome/free-solid-svg-icons";
-
+import axios from 'axios';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { useState, useEffect } from "react";
@@ -13,7 +13,7 @@ function Product({id}) {
 
   const getProducts = async () => {
       try{
-          let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product/"+ parseInt(req.params.id))
+          let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product/2")
           console.log(response.data.data.products)
           setProducts(response.data.data.products)
       }catch(e) {
