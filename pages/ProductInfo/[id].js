@@ -14,6 +14,8 @@ export const getStaticPaths = async () => {
   console.log(response.data.data.products)
   const data = await response.data.data.products;
 
+  
+
   const paths = data.map(products => {
     return {
       params: {id: products.id.toString()}
@@ -32,14 +34,18 @@ export const getStaticProps = async (context) => {
   let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product/" + id)
   console.log(response.data.data.products)
   const data = await response.data.data.products;
+  console.log("asade", data.user_id)
   
+  let responses = await axios.get("https://api-secondhand-fsw.herokuapp.com/profile/"+ data.user_id)
+  console.log(responses.data.data)
+  const datas = await responses.data.data;
   return {
-    props : {products: data}
+    props : {products: data, users:datas}
   }
 
 }
 
-const Product = ({products}) => {
+const Product = ({products, users}) => {
 
   return (
     <Row>
@@ -100,8 +106,8 @@ const Product = ({products}) => {
                       <Image src="/penjual1.png" alt="penjual1"className="seller_img rounded-3"></Image>
                     </div>
                     <div class="col">
-                      <Card.Title>{products.user_id}</Card.Title>
-                      <Card.Subtitle className="mb-2 text-muted kota">Kota</Card.Subtitle>
+                      <Card.Title>{users.name}</Card.Title>
+                      <Card.Subtitle className="mb-2 text-muted kota">{users.city}</Card.Subtitle>
                     </div>
                   </div>
                 </Card.Body>
