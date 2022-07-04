@@ -5,5 +5,6 @@ import CardProduct from "./CardProduct";
 import Modal from "./Modal";
 import NavbarSearch from "./NavbarSearch";
 import CardProductOffered from "./CardProductOffered";
+import CardList from "./CardList";
 
-export { LoginImage, LogoImage, NavbarStandard, CardProduct, Modal, NavbarSearch, CardProductOffered };
+export { LoginImage, LogoImage, NavbarStandard, CardProduct, Modal, NavbarSearch, CardProductOffered, CardList };

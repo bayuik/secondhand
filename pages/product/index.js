@@ -31,10 +31,10 @@ const Product = () => {
                   <Card.Subtitle className="mb-2 text-muted font-control">Aksesoris</Card.Subtitle>
                   <Card.Text className="font-14">Rp. 250.000</Card.Text>
                   <div className="d-grid gap-2 mt-4">
-                    <Button className="text-white purple-bg custom-rounded p-2 font-14" type="button">
+                    <Button className="text-white purple-bg custom-rounded p-2 font-14" type="submit" >
                       Terbitkan
                     </Button>
-                    <Button className="purple-outline custom-rounded p-2 font-14" type="button">
+                    <Button className="purple-outline custom-rounded p-2 font-14" type="submit">
                       Edit
                     </Button>
                   </div>
