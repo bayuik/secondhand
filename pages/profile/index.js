@@ -50,7 +50,9 @@ const Profile = () => {
 
   return (
     <Row>
+      <div className="logo-invisible">
       <NavbarStandard title='Lengkapi Info Akun' />
+      </div>
       <Col md={6} className="my-auto mx-auto">
         <div className="spacing">
           <div className="mx-auto my-auto CamIcon">
@@ -77,24 +79,24 @@ const Profile = () => {
           </div>
           <div className="mx-auto w-75">
             <Form onSubmit={handleSubmit(onSubmit)}>
-              <Form.Group controlId="name" className="mt-3">
-                <Form.Label className="fw-bold">Nama </Form.Label>
-                <Form.Control type="text" placeholder="Nama" className="custom-rounded p-2" {...register("name")}/>
+              <Form.Group controlId="name" className="form-spacing">
+                <Form.Label className="fw-bold font-control">Nama </Form.Label>
+                <Form.Control type="text" placeholder="Nama" className="custom-rounded p-2 font-control form-input" {...register("name")}/>
               </Form.Group>
-              <Form.Group controlId="kota" className="mt-3">
-                <Form.Label className="fw-bold">Kota</Form.Label>
-                <Form.Control type="text" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2" {...register("city")} />
+              <Form.Group controlId="kota" className="form-spacing">
+                <Form.Label className="fw-bold font-control">Kota</Form.Label>
+                <Form.Control type="text" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2 font-control form-input" {...register("city")} />
               </Form.Group>
-              <Form.Group controlId="alamat" className="mt-3">
-                <Form.Label className="fw-bold">Alamat</Form.Label>
-                <textarea className="form-control custom-rounded p-2" placeholder="Contoh: Jalan Ikan Hiu 33" {...register("address")}></textarea>
+              <Form.Group controlId="alamat" className="form-spacing">
+                <Form.Label className="fw-bold font-control">Alamat</Form.Label>
+                <textarea className="form-control custom-rounded p-2 font-control " placeholder="Contoh: Jalan Ikan Hiu 33" {...register("address")}></textarea>
               </Form.Group>
-              <Form.Group controlId="hp" className="mt-3">
-                <Form.Label className="fw-bold">No Handphone</Form.Label>
-                <Form.Control type="text" placeholder="contoh: +628123456789" className="custom-rounded p-2" {...register("phone")}/>
+              <Form.Group controlId="hp" className="form-spacing">
+                <Form.Label className="fw-bold font-control">No Handphone</Form.Label>
+                <Form.Control type="text" placeholder="contoh: +628123456789" className="custom-rounded p-2 font-control form-input" {...register("phone")}/>
               </Form.Group>
-              <div className="d-grid gap-2 mt-4">
-                <button className="btn text-white purple-bg custom-rounded p-2 ms-2" type="submit">
+              <div className="d-grid gap-2 mt-4 form-spacing">
+                <button className="btn text-white purple-bg custom-rounded p-2 ms-2 font-control" type="submit">
                   Simpan
                 </button>
               </div>

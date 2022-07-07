@@ -40,9 +40,13 @@ const Login = () => {
   };
   return (
     <Row>
-      <LoginImage />
-      <Col md={6} className="my-auto">
-        <div className="mx-auto w-75">
+      <Col md={6}>
+      <div className="logo-invisible">
+        <LoginImage className="logo-invisible"/>
+      </div>
+      </Col>
+      <Col md={5} className="my-auto ">
+        <div className="mx-auto w-75 form-in-mobile">
           <h1 className="fw-bold">Masuk</h1>
           <ToastContainer />
           <Form onSubmit={handleSubmit(onSubmit)}>

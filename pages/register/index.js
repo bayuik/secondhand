@@ -43,9 +43,13 @@ const Register = () => {
 
   return (
     <Row>
-      <LoginImage />
+      <Col md={6}>
+      <div className="logo-invisible">
+        <LoginImage className="logo-invisible"/>
+      </div>
+      </Col>
       <Col md={6} className="my-auto">
-        <div className="mx-auto w-75">
+        <div className="mx-auto w-75 form-in-mobile">
           <h1 className="fw-bold">Daftar</h1>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="name" className="mt-3">

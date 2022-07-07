@@ -4,7 +4,7 @@ import { Col, Row, Image, Form, Navbar, Nav, Card, Container, Button, ListGroup 
 import { LogoImage } from "../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faSearch, faUser, faList, faBell,faArrowRightToBracket
+    faSearch,faArrowRightToBracket
 } from "@fortawesome/free-solid-svg-icons";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -30,8 +30,10 @@ const Home = ({product}) => {
             <Navbar.Brand href="#"><LogoImage /></Navbar.Brand>
             <Nav className="me-auto">
                 <Form className="d-flex">
-                <Form.Control type="search" placeholder="Cari di sini..." className="search-box me-auto" aria-label="Search"/>
-                <FontAwesomeIcon icon={faSearch} id="btnIcon" className="" style={{marginTop:"13px", marginLeft:"10px"}}/>
+                    <div className="search-box">
+                        <Form.Control type="search" placeholder="Cari di sini..." className=" sbox me-auto" aria-label="Search" />
+                        <FontAwesomeIcon icon={faSearch} id="btnIcon" />
+                    </div>
                 </Form>
             </Nav>
             

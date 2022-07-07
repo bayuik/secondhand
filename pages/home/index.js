@@ -34,8 +34,10 @@ function Home() {
             </Navbar.Brand>
             <Nav className="me-auto">
               <Form className="d-flex">
-                <Form.Control type="search" placeholder="Cari di sini..." className="search-box me-auto" aria-label="Search" />
-                <FontAwesomeIcon icon={faSearch} id="btnIcon" className="" style={{ marginTop: "13px", marginLeft: "10px" }} />
+                <div className="search-box">
+                  <Form.Control type="search" placeholder="Cari di sini..." className=" sbox me-auto" aria-label="Search" />
+                  <FontAwesomeIcon icon={faSearch} id="btnIcon" />
+                </div>
               </Form>
             </Nav>
             <Button style={{ backgroundColor: "#7126B5", borderRadius: "10px" }}>
