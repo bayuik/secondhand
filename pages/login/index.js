@@ -59,9 +59,11 @@ const Login = () => {
               <Form.Control name="password" type="password" placeholder="Masukkan password" className="custom-rounded p-2" {...register("password")} />
             </Form.Group>
             <div className="d-grid gap-2 mt-4">
-              <button className="btn text-white purple-bg custom-rounded p-2" type="submit">
-                Masuk
-              </button>
+              <Link href="/profile">
+                <button className="btn text-white purple-bg custom-rounded p-2" type="submit">
+                  Masuk
+                </button>
+              </Link>
             </div>
           </Form>
           <div className="text-center mt-4">

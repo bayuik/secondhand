@@ -199,6 +199,10 @@ a {
   margin-top: 10px ;
 }
 
+.card-product{
+  border-radius: 23px !important;
+}
+
 /* daftar jual */
 #daftarjual .profile-card .profile-name {
   width: fit-content;
@@ -342,6 +346,25 @@ a {
   }
 }
 
+@media (min-width: 565px) and (max-width: 766px) {
+  .product-offered-title{
+    margin-left: 50px !important;
+  }
+}
+
+@media (min-width: 516px) and (max-width: 566px) {
+  .product-offered-title{
+    margin-left: 30px !important;
+  }
+}
+
+@media (min-width: 770px) and (max-width: 994px) {
+  .card-product{
+    width: 400px;
+    border-radius: 23px !important;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .invisible-content{
     visibility: hidden !important;
@@ -351,8 +374,14 @@ a {
   }
   .card-product{
     width: 400px;
-    border-radius: 25px !important;
+    border-radius: 23px !important;
     margin-top: -90px;
+  }
+  .card-offered{
+    margin-top: 0px;
+  }
+  .product-offered-title{
+    margin-left: 20px;
   }
   .card-description{
     border-radius: 25px !important;
@@ -380,5 +409,11 @@ a {
   }
   .form-spacing{
     margin-top: 7px !important;
+  }
+  .center{
+    text-align: center !important;
+  }
+  .btn-product-offered{
+    text-align: center !important;
   }
 }

@@ -13,7 +13,7 @@ function InfoProduct() {
   const onSubmit = async (data) => {
     const { product_name, category, price, description, prodcut_photo } = data;
     const res = await axios
-      .post("https://api-secondhand-fsw.herokuapp.com/profile", {
+      .post("https://api-secondhand-fsw.herokuapp.com/product", {
         product_name,
         category,
         price,

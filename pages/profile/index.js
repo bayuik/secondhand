@@ -22,7 +22,7 @@ const Profile = () => {
   const onSubmit = async (data) => {
     const { name, city, address, phone, photo } = data;
     const res = await axios
-      .post("https://api-secondhand-fsw.herokuapp.com/profile", {
+      .put("https://api-secondhand-fsw.herokuapp.com/profile/", {
         name,
         city,
         address,
@@ -55,6 +55,9 @@ const Profile = () => {
       </div>
       <Col md={6} className="my-auto mx-auto">
         <div className="spacing">
+          <div className="center ">
+            <p className="title-visible fw-bold"> Lengkapi Info Akun </p>
+          </div>
           <div className="mx-auto my-auto CamIcon">
           <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url">
               {({imageList, onImageUpload, onImageUpdate, onImageRemove, isDragging, dragProps}) => (
