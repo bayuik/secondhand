@@ -44,7 +44,7 @@ const CardProduct = () => {
             <div className="btn-group" role="group">
               <Button className="purple-bg custom-rounded p-2 me-2 font-14 text-center" type="button">
                 Hubungi via Whatsapp
-                <Image className="whatsapp ms-2" src="/whatsapp.svg"></Image>
+                <Image className="whatsapp ms-2" src="/whatsapp.svg" alt="whatsapp"></Image>
               </Button>
             </div>
           </div>

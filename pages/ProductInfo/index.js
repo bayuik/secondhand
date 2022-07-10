@@ -78,11 +78,11 @@ function Product({id}) {
 
               <Card className="mt-3 card-size card-product">
                 <Card.Body>
-                  <div class="row">
-                    <div class="col-3">
+                  <div className="row">
+                    <div className="col-3">
                       <Image src="/penjual1.png" alt="penjual1"className="seller_img rounded-3"></Image>
                     </div>
-                    <div class="col">
+                    <div className="col">
                       <Card.Title>Nama Penjual</Card.Title>
                       <Card.Subtitle className="mb-2 text-muted kota">Kota</Card.Subtitle>
                     </div>
