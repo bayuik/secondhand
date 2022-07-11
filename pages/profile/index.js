@@ -1,4 +1,4 @@
-import { Col, Row, Form } from "react-bootstrap";
+import { Col, Row, Form, Image } from "react-bootstrap";
 import { NavbarStandard } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
@@ -68,10 +68,9 @@ const Profile = () => {
                   </label>
                   {imageList.map((image, index) => (
                     <div key={index} className="image-item">
-                      <img src={image['data_url']} alt="" width={130} height={130} />
+                      <Image src={image['data_url']} alt="" width={130} height={130} onClick={() => onImageUpdate(index)}/>
                       <input id="file-upload" type="file" className="custom-rounded p-2 image-file"/>
                       <div className="image-item__btn-wrapper">
-                        <button onClick={() => onImageUpdate(index)}>Update</button>
                         <button onClick={() => onImageRemove(index)}>Remove</button>
                       </div>
                     </div>

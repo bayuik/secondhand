@@ -9,23 +9,18 @@ import React from "react";
 
 function InfoProduct() {
 
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = async (data) => {
-    const { product_name, category, price, description, prodcut_photo } = data;
+    const { product_name, price, category, description, product_photo } = data;
     const res = await axios
       .post("https://api-secondhand-fsw.herokuapp.com/product", {
-        product_name,
-        category,
-        price,
-        description,
-        prodcut_photo,
+        product_name, price, category, description, product_photo
       })
       .then((val) => {
-        alert("Add Profile Success");
         window.location.href = "/product";
       })
       .catch((err) => {
-        alert("Add Profile Failed");
+        alert(JSON.stringify(data));
       });
   };
 
@@ -55,8 +50,19 @@ function InfoProduct() {
             </Form.Group>
             <Form.Group controlId="kategori" className="mt-3">
               <Form.Label className="fw-bold">Kategori</Form.Label>
-              <Form.Control type="text" placeholder="Pilih Ketegori" className="custom-rounded p-2" {...register("category")}/>
+              <Form.Select aria-label="Default select example" className="custom-rounded p-2" 
+              {...register("category", {required:'category is required'})}>
+                <option value="">Pilih Ketegori</option>
+                <option value="Hobi">Hobi</option>
+                <option value="kendaraan">Kendaran</option>
+                <option value="baju">Baju</option>
+                <option value="elektronik">Elektronik</option>
+                <option value="kesehatan">Kesehatan</option>
+              </Form.Select>
             </Form.Group>
+            <div>
+              {errors.category && <span className="text-sm text-red-500">{errors.category.message}</span>}
+            </div>
             <Form.Group controlId="deskripsi" className="mt-3">
               <Form.Label className="fw-bold">Deskripsi</Form.Label>
               <textarea className="form-control custom-rounded p-2" placeholder="Contoh: Jalan Ikan Hiu 33" {...register("description")}></textarea>

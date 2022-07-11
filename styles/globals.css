@@ -91,10 +91,6 @@ a {
   margin-left: 100px;
 }
 
-.nav-bar{
-
-}
-
 .input-box{
   position: relative;
 }
@@ -332,8 +328,6 @@ a {
   }
 }
 
-
-
 @media only screen and (max-width: 480px){
   .title-visible{
     visibility: visible !important;
@@ -343,6 +337,9 @@ a {
 @media only screen and (min-width: 768px) {
   .title-visible{
     visibility: hidden ;
+  }
+  .btn-terbitakan{
+    visibility: hidden !important;
   }
 }
 
@@ -370,7 +367,7 @@ a {
     visibility: hidden !important;
   }
   .product-img{
-    margin-top: -110px !important;
+    margin-top: -50px;
   }
   .card-product{
     width: 400px;
@@ -415,5 +412,15 @@ a {
   }
   .btn-product-offered{
     text-align: center !important;
+  }
+  .justify-center{
+    align-items: center !important;
+    justify-content: center !important;
+    display: flex;
+  }
+  .btn-terbitakan{
+    position: fixed;
+    bottom: 0px;
+    padding-bottom: 20px;
   }
 }

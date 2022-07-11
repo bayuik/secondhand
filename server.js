@@ -11,6 +11,15 @@ app.prepare().then(() => {
             success:true
         });
     });
+    server.post('api/product', (req, res) =>{
+        const {product_name, price, category, description, product_photo} =req.body;
+        res.json({
+            product_name, price, category, description, product_photo,
+            success:true
+        });
+        const cors = require("cors");
+        app.use(cors());
+    });
     server.get('/ProductInfo/:id', (req, res) => {
         return app.render(req, res, '/ProductInfo/', { id: req.params.id })
       })
