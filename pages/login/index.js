@@ -25,8 +25,10 @@ const Login = () => {
           draggable: true,
           progress: undefined,
         });
+        window.location.href = "/";
       })
       .catch((err) => {
+        console.log("gagal");
         toast.error("Invalid Email or Password", {
           position: "top-center",
           autoClose: 5000,
@@ -41,9 +43,9 @@ const Login = () => {
   return (
     <Row>
       <Col md={6}>
-      <div className="logo-invisible">
-        <LoginImage className="logo-invisible"/>
-      </div>
+        <div className="logo-invisible">
+          <LoginImage className="logo-invisible" />
+        </div>
       </Col>
       <Col md={5} className="my-auto ">
         <div className="mx-auto w-75 form-in-mobile">
@@ -59,11 +61,9 @@ const Login = () => {
               <Form.Control name="password" type="password" placeholder="Masukkan password" className="custom-rounded p-2" {...register("password")} />
             </Form.Group>
             <div className="d-grid gap-2 mt-4">
-              <Link href="/profile">
-                <button className="btn text-white purple-bg custom-rounded p-2" type="submit">
-                  Masuk
-                </button>
-              </Link>
+              <button className="btn text-white purple-bg custom-rounded p-2" type="submit">
+                Masuk
+              </button>
             </div>
           </Form>
           <div className="text-center mt-4">

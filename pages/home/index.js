@@ -29,7 +29,7 @@ function Home() {
       <div className="invisible-content">
         <Navbar expand="lg" variant="light" bg="body" fixed="top" className="shadow p-2 mb-5 rounded nav-bar">
           <Container>
-            <Navbar.Brand href="#">
+            <Navbar.Brand href="/">
               <LogoImage />
             </Navbar.Brand>
             <Nav className="me-auto">
@@ -40,7 +40,7 @@ function Home() {
                 </div>
               </Form>
             </Nav>
-            <Button style={{ backgroundColor: "#7126B5", borderRadius: "10px" }}>
+            <Button href='/login' style={{ backgroundColor: "#7126B5", borderRadius: "10px" }}>
               <FontAwesomeIcon icon={faArrowRightToBracket} id="btnIcon" className="" />
               &nbsp; Masuk
             </Button>
