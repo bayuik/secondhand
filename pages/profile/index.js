@@ -9,6 +9,7 @@ import React from "react";
 import ImageUploading from 'react-images-uploading';
 
 const Profile = () => {
+  const [show, setShow] = useState(true);
   const [images, setImages] = React.useState([]);
   const maxNumber = 69;
 
@@ -38,16 +39,6 @@ const Profile = () => {
       });
   };
 
-  const [image, setImage] = useState("faPlus");
-  const [saveImage, setSaveImage] = useState(null);
-
-  function handleUploadChange(e) {
-    console.log(e.target.files[0]);
-    let Uploaded = e.target.files[0];
-    setImage(URL.createObjectURL(Uploaded));
-    setSaveImage(Uploaded);
-  }
-
   return (
     <Row>
       <div className="logo-invisible">
@@ -59,19 +50,23 @@ const Profile = () => {
             <p className="title-visible fw-bold"> Lengkapi Info Akun </p>
           </div>
           <div className="mx-auto my-auto CamIcon">
+            
           <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url">
               {({imageList, onImageUpload, onImageUpdate, onImageRemove, isDragging, dragProps}) => (
               // write your building UI
                 <div className="upload__image-wrapper">
-                  <label htmlFor="file-upload">
-                    <FontAwesomeIcon icon={faCamera} className="camera-icon" style={isDragging ? { color: 'red' } : undefined}  onClick={onImageUpload}{...dragProps} {...register("photo")}/>
-                  </label>
+                  {show &&
+                  <label htmlFor="file-upload" onClick={() => setShow(!show)}>
+                    <FontAwesomeIcon icon={faCamera} className="camera-icon" 
+                    style={isDragging ? { color: 'red' } : undefined}  
+                    onClick={onImageUpload}{...dragProps}/>
+                  </label>}
                   {imageList.map((image, index) => (
                     <div key={index} className="image-item">
-                      <Image src={image['data_url']} alt="" width={130} height={130} onClick={() => onImageUpdate(index)}/>
+                      <Image src={image['data_url']} alt="" width={130} height={130} onClick={() => onImageUpdate(index)} {...register("photo")}/>
                       <input id="file-upload" type="file" className="custom-rounded p-2 image-file"/>
-                      <div className="image-item__btn-wrapper">
-                        <button onClick={() => onImageRemove(index)}>Remove</button>
+                      <div className="image-item__btn-wrapper" onClick={() => setShow(true)}>
+                        <button onClick={() => onImageRemove(index)} className="btn text-white purple-bg custom-rounded py-2 px-4 mt-3 font-control">Remove</button>
                       </div>
                     </div>
                   ))}

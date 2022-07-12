@@ -1,4 +1,4 @@
-import { Col, Row, Form } from "react-bootstrap";
+import { Col, Row, Form, Image } from "react-bootstrap";
 import { NavbarStandard } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -6,8 +6,19 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import React from "react";
+import ImageUploading from 'react-images-uploading';
 
 function InfoProduct() {
+
+  const [show, setShow] = useState(true);
+  const [images, setImages] = React.useState([]);
+  const maxNumber = 69;
+
+  const onChange = (imageList, addUpdateIndex) => {
+    // data for submit
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList);
+  };
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = async (data) => {
@@ -24,15 +35,7 @@ function InfoProduct() {
       });
   };
 
-  const [image, setImage] = useState({ faPlus });
-  const [saveImage, setSaveImage] = useState(null);
-
-  function handleUploadChange(e) {
-    console.log(e.target.files[0]);
-    let Uploaded = e.target.files[0];
-    setImage(URL.createObjectURL(Uploaded));
-    setSaveImage(Uploaded);
-  }
+ 
 
   return (
     <Row>
@@ -70,10 +73,28 @@ function InfoProduct() {
             <Form.Group controlId="image-product" className="mt-3">
               <Form.Label className="fw-bold">Foto Produk</Form.Label>
               <br></br>
-              <label htmlFor="file-upload">
-                <FontAwesomeIcon icon={faPlus} id="btnIcon" className="plus-icon" />
-              </label>
-              <input id="file-upload" onChange={handleUploadChange} type="file" className="custom-rounded p-2 image-file" {...register("prodcut_photo")}/>
+              <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url">
+                {({imageList, onImageUpload, onImageUpdate, onImageRemove, isDragging, dragProps}) => (
+                // write your building UI
+                  <div className="upload__image-wrapper">
+                    {show &&
+                    <label htmlFor="file-upload" onClick={() => setShow(!show)}>
+                    <FontAwesomeIcon icon={faPlus} id="btnIcon" className="plus-icon" 
+                    style={isDragging ? { color: 'red' } : undefined}  
+                    onClick={onImageUpload}{...dragProps}/>
+                    </label>}
+                    {imageList.map((image, index) => (
+                      <div key={index} className="image-item">
+                        <Image src={image['data_url']} alt="" width={130} height={130} onClick={() => onImageUpdate(index)} {...register("product_photo")}/>
+                        <input id="file-upload" type="file" className="custom-rounded p-2 image-file"/>
+                        <div className="image-item__btn-wrapper" onClick={() => setShow(true)}>
+                          <button onClick={() => onImageRemove(index)} className="btn text-white purple-bg custom-rounded py-2 px-4 mt-3 font-control">Remove</button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </ImageUploading>
             </Form.Group>
             <div className="d-grid gap-2 mt-4">
               <div className="btn-group" role="group">
