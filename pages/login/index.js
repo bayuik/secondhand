@@ -25,6 +25,7 @@ const Login = () => {
           draggable: true,
           progress: undefined,
         });
+        window.localStorage.setItem("token", val.data.data.token);
         window.location.href = "/";
       })
       .catch((err) => {

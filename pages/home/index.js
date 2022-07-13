@@ -9,24 +9,33 @@ import { Carousel } from "react-responsive-carousel";
 
 function Home() {
   const [product, setProducts] = useState([]);
+  const [login, setLogin] = useState(false);
 
   const getProducts = async () => {
     try {
       let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product");
-      console.log(response.data.data.products);
       setProducts(response.data.data.products);
     } catch (e) {
       console.log(e.message);
     }
   };
 
+  const checkLogin = () => {
+    if (window.localStorage.getItem("token") != null) {
+      setLogin(false);
+    } else {
+      setLogin(true);
+    }
+  };
+
   useEffect(() => {
     getProducts();
+    checkLogin();
   }, []);
 
   return (
     <Row>
-      <div className="invisible-content">
+      <Col className="invisible-content">
         <Navbar expand="lg" variant="light" bg="body" fixed="top" className="shadow p-2 mb-5 rounded nav-bar">
           <Container>
             <Navbar.Brand href="/">
@@ -34,23 +43,23 @@ function Home() {
             </Navbar.Brand>
             <Nav className="me-auto">
               <Form className="d-flex">
-                <div className="search-box">
+                <Col className="search-box">
                   <Form.Control type="search" placeholder="Cari di sini..." className=" sbox me-auto" aria-label="Search" />
                   <FontAwesomeIcon icon={faSearch} id="btnIcon" />
-                </div>
+                </Col>
               </Form>
             </Nav>
-            <Button href='/login' style={{ backgroundColor: "#7126B5", borderRadius: "10px" }}>
-              <FontAwesomeIcon icon={faArrowRightToBracket} id="btnIcon" className="" />
-              &nbsp; Masuk
-            </Button>
+            {login && (
+              <Button href="/login" style={{ backgroundColor: "#7126B5", borderRadius: "10px" }}>
+                <FontAwesomeIcon icon={faArrowRightToBracket} id="btnIcon" className="" />
+                &nbsp; Masuk
+              </Button>
+            )}
           </Container>
         </Navbar>
-      </div>
-      <br />
-      <br />
-      <br />
-      <div>
+      </Col>
+
+      <Col className="mt-5 pt-5">
         <Carousel className="product-img">
           <div>
             <Image src="/banner.png" alt="image1" className="product_img rounded-3" style={{ width: "700px", height: "200px" }}></Image>
@@ -62,7 +71,7 @@ function Home() {
             <Image src="/banner.png" alt="image3" className="product_img rounded-3" style={{ width: "700px", height: "200px" }}></Image>
           </div>
         </Carousel>
-      </div>
+      </Col>
       <Row className="justify-content-md-left">
         {product &&
           product.map(({ id, product_photo, product_name, category, price }) => {
