@@ -58,7 +58,7 @@ const Home = ({ product }) => {
         </Carousel>
       </div>
       <Row className="justify-content-md-left">
-        {product.map(({id, product_name, product_photo, category}) => {
+        {product.map(({id, product_name, product_photo, category, price}) => {
           return (
             <Col md={1} style={{ margin: "50px" }} key={id}>
               <Card style={{ width: "200px" }}>

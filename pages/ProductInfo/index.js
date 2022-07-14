@@ -16,7 +16,7 @@ export const getStaticProps = async () => {
   };
 };
 
-const Home = ({ product }) => {
+const Product = ({ product }) => {
   return (
     <Row>
       <div className="invisible-content">
@@ -79,4 +79,4 @@ const Home = ({ product }) => {
   );
 };
 
-export default Home;
+export default Product;

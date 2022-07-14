@@ -1,5 +1,5 @@
 import { Col, Row, Image, Form, Navbar, Nav, Card, Container, Button, ListGroup } from "react-bootstrap";
-import { LogoImage } from "../../components";
+import { LogoImage } from "../../components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUser, faList, faBell, faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
