@@ -8,13 +8,15 @@ import { Carousel } from "react-responsive-carousel";
 import { useState, useEffect } from "react";
 
 export const getStaticPaths = async () => {
-  let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product");
-  console.log(response.data.data.products);
-  const data = await response.data.data.products;
+  let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product/")
+  console.log(response.data.data.Products)
+  const data = await response.data.data.Products;
 
-  const paths = data.map((products) => {
+  
+
+  const paths = data.map((Products) => {
     return {
-      params: { id: products.id.toString() },
+      params: { id: Products.id.toString() },
     };
   });
 
@@ -28,8 +30,8 @@ export const getStaticProps = async (context) => {
   const id = context.params.id;
 
   let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product/" + id);
-  console.log(response.data.data.products);
-  const data = await response.data.data.products;
+  console.log(response.data.data.Products);
+  const data = await response.data.data.Products;
   console.log("asade", data.user_id);
 
   let responses = await axios.get("https://api-secondhand-fsw.herokuapp.com/profile/" + data.user_id);
