@@ -9,8 +9,8 @@ import { Carousel } from "react-responsive-carousel";
 
 export const getStaticProps = async () => {
   let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product");
-  console.log(response.data.data.products);
-  const data = await response.data.data.products;
+  console.log(response.data.data.Products);
+  const data = await response.data.data.Products;
   return {
     props: { product: data },
   };
