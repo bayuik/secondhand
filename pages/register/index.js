@@ -2,6 +2,7 @@ import { Col, Row, Form } from "react-bootstrap";
 import Link from "next/link";
 import { LoginImage } from "../../components";
 import axios from "axios";
+import Router from "next/router";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,7 +27,7 @@ const Register = () => {
           draggable: true,
           progress: undefined,
         });
-        window.location.href = "/login";
+        Router.push("/login");
       })
       .catch((err) => {
         toast.error("Register Failed", {
