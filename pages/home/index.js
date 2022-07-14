@@ -14,7 +14,7 @@ function Home() {
   const getProducts = async () => {
     try {
       let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product");
-      setProducts(response.data.data.products);
+      setProducts(response.data.data.Products);
     } catch (e) {
       console.log(e.message);
     }

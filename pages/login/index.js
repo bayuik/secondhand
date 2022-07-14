@@ -1,10 +1,10 @@
 import { Col, Row, Form } from "react-bootstrap";
 import Link from "next/link";
+import Router from "next/router";
 import { LoginImage } from "../../components";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -26,10 +26,11 @@ const Login = () => {
           progress: undefined,
         });
         window.localStorage.setItem("token", val.data.data.token);
-        window.location.href = "/";
+        window.localStorage.setItem("isLogin", true);
+        window.localStorage.setItem("userId", val.data.data.id);
+        Router.push("/");
       })
       .catch((err) => {
-        console.log("gagal");
         toast.error("Invalid Email or Password", {
           position: "top-center",
           autoClose: 5000,

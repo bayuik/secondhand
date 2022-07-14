@@ -9,8 +9,8 @@ import { Carousel } from "react-responsive-carousel";
 
 export const getStaticProps = async () => {
   let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product");
-  console.log(response.data.data.products);
-  const data = await response.data.data.products;
+  console.log(response.data.data.Products);
+  const data = await response.data.data.Products;
   return {
     props: { product: data },
   };
@@ -58,7 +58,7 @@ const Home = ({ product }) => {
         </Carousel>
       </div>
       <Row className="justify-content-md-left">
-        {product.map(({id, product_name, product_photo, category}) => {
+        {product.map(({id, product_name, product_photo, category, price}) => {
           return (
             <Col md={1} style={{ margin: "50px" }} key={id}>
               <Card style={{ width: "200px" }}>

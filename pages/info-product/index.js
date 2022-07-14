@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import React from "react";
 import ImageUploading from 'react-images-uploading';
+import Router from "next/router";
 
 function InfoProduct() {
 
@@ -28,7 +29,7 @@ function InfoProduct() {
         product_name, price, category, description, product_photo
       })
       .then((val) => {
-        window.location.href = "/product";
+        Router.push("/product");
       })
       .catch((err) => {
         alert(JSON.stringify(data));
