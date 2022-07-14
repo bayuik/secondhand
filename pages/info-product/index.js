@@ -45,11 +45,11 @@ function InfoProduct() {
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="produk" className="mt-3">
               <Form.Label className="fw-bold">Nama Produk</Form.Label>
-              <Form.Control type="text" placeholder="Nama Produk" className="custom-rounded p-2" {...register("product_name")} />
+              <Form.Control type="text" placeholder="Nama Produk" className="custom-rounded p-2" {...register("product_name" , {required:'product name is required'})} />
             </Form.Group>
             <Form.Group controlId="harga" className="mt-3">
               <Form.Label className="fw-bold">Harga Produk</Form.Label>
-              <Form.Control type="text" placeholder="Rp 0,00" className="custom-rounded p-2" {...register("price")}/>
+              <Form.Control type="text" placeholder="Rp 0,00" className="custom-rounded p-2" {...register("price" , {required:'price is required'})}/>
             </Form.Group>
             <Form.Group controlId="kategori" className="mt-3">
               <Form.Label className="fw-bold">Kategori</Form.Label>
@@ -68,7 +68,7 @@ function InfoProduct() {
             </div>
             <Form.Group controlId="deskripsi" className="mt-3">
               <Form.Label className="fw-bold">Deskripsi</Form.Label>
-              <textarea className="form-control custom-rounded p-2" placeholder="Contoh: Jalan Ikan Hiu 33" {...register("description")}></textarea>
+              <textarea className="form-control custom-rounded p-2" placeholder="Contoh: Jalan Ikan Hiu 33" {...register("description", {required:'description is required'})}></textarea>
             </Form.Group>
             <Form.Group controlId="image-product" className="mt-3">
               <Form.Label className="fw-bold">Foto Produk</Form.Label>
@@ -85,7 +85,7 @@ function InfoProduct() {
                     </label>}
                     {imageList.map((image, index) => (
                       <div key={index} className="image-item">
-                        <Image src={image['data_url']} alt="" width={130} height={130} onClick={() => onImageUpdate(index)} {...register("product_photo")}/>
+                        <Image src={image['data_url']} alt="" width={130} height={130} onClick={() => onImageUpdate(index)} {...register("product_photo" , {required:'image is required'})}/>
                         <input id="file-upload" type="file" className="custom-rounded p-2 image-file"/>
                         <div className="image-item__btn-wrapper" onClick={() => setShow(true)}>
                           <button onClick={() => onImageRemove(index)} className="btn text-white purple-bg custom-rounded py-2 px-4 mt-3 font-control">Remove</button>

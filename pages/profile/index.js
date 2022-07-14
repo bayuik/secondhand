@@ -77,19 +77,19 @@ const Profile = () => {
             <Form onSubmit={handleSubmit(onSubmit)}>
               <Form.Group controlId="name" className="form-spacing">
                 <Form.Label className="fw-bold font-control">Nama </Form.Label>
-                <Form.Control type="text" placeholder="Nama" className="custom-rounded p-2 font-control form-input" {...register("name")}/>
+                <Form.Control type="text" placeholder="Nama" className="custom-rounded p-2 font-control form-input" {...register("name" , {required:'name is required'})}/>
               </Form.Group>
               <Form.Group controlId="kota" className="form-spacing">
                 <Form.Label className="fw-bold font-control">Kota</Form.Label>
-                <Form.Control type="text" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2 font-control form-input" {...register("city")} />
+                <Form.Control type="text" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2 font-control form-input" {...register("city", {required:'city is required'})} />
               </Form.Group>
               <Form.Group controlId="alamat" className="form-spacing">
                 <Form.Label className="fw-bold font-control">Alamat</Form.Label>
-                <textarea className="form-control custom-rounded p-2 font-control " placeholder="Contoh: Jalan Ikan Hiu 33" {...register("address")}></textarea>
+                <textarea className="form-control custom-rounded p-2 font-control " placeholder="Contoh: Jalan Ikan Hiu 33" {...register("address", {required:'address is required'})}></textarea>
               </Form.Group>
               <Form.Group controlId="hp" className="form-spacing">
                 <Form.Label className="fw-bold font-control">No Handphone</Form.Label>
-                <Form.Control type="text" placeholder="contoh: +628123456789" className="custom-rounded p-2 font-control form-input" {...register("phone")}/>
+                <Form.Control type="text" placeholder="contoh: +628123456789" className="custom-rounded p-2 font-control form-input" {...register("phone", {required:'phone is required'})}/>
               </Form.Group>
               <div className="d-grid gap-2 mt-4 form-spacing">
                 <button className="btn text-white purple-bg custom-rounded p-2 ms-2 font-control" type="submit">

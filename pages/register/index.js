@@ -54,15 +54,15 @@ const Register = () => {
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="name" className="mt-3">
               <Form.Label>Nama</Form.Label>
-              <Form.Control type="text" placeholder="Nama Lengkap" className="custom-rounded p-2" {...register("name")} />
+              <Form.Control type="text" placeholder="Nama Lengkap" className="custom-rounded p-2" {...register("name", {required:'name is required'})} />
             </Form.Group>
             <Form.Group controlId="email" className="mt-3">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2" {...register("email")} />
+              <Form.Control type="email" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2" {...register("email", {required:'email is required'})} />
             </Form.Group>
             <Form.Group controlId="password" className="mt-3">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Masukkan password" className="custom-rounded p-2" {...register("password")} />
+              <Form.Control type="password" placeholder="Masukkan password" className="custom-rounded p-2" {...register("password", {required:'password is required'})} />
             </Form.Group>
             <div className="d-grid gap-2 mt-4">
               <button className="btn text-white purple-bg custom-rounded p-2" type="submit">

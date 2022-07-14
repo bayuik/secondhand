@@ -55,11 +55,11 @@ const Login = () => {
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="email" className="mt-3">
               <Form.Label>Email</Form.Label>
-              <Form.Control name="email" type="email" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2" {...register("email")} />
+              <Form.Control name="email" type="email" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2" {...register("email", {required:'email is required'})} />
             </Form.Group>
             <Form.Group controlId="password" className="mt-3">
               <Form.Label>Password</Form.Label>
-              <Form.Control name="password" type="password" placeholder="Masukkan password" className="custom-rounded p-2" {...register("password")} />
+              <Form.Control name="password" type="password" placeholder="Masukkan password" className="custom-rounded p-2" {...register("password", {required:'password is required'})} />
             </Form.Group>
             <div className="d-grid gap-2 mt-4">
               <button className="btn text-white purple-bg custom-rounded p-2" type="submit">
