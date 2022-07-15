@@ -1,6 +1,7 @@
-import { Col, Row, Image, Form, Navbar, Nav, Card, Container, Button, ListGroup } from "react-bootstrap";
+import { Col, Row, Image, Form, Navbar, Nav, Card, Container, Button } from "react-bootstrap";
 import { NavbarSearch } from "../../components";
 import { useState } from "react";
+import Link from "next/link";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
@@ -32,12 +33,16 @@ const Product = () => {
                   <Card.Subtitle className="mb-2 text-muted font-control">Aksesoris</Card.Subtitle>
                   <Card.Text className="font-14">Rp. 250.000</Card.Text>
                   <div className="d-grid gap-2 mt-4">
-                    <Button className="text-white purple-bg custom-rounded p-2 font-14 logo-invisible" type="submit" >
-                      Terbitkan
-                    </Button>
-                    <Button className="purple-outline custom-rounded p-2 font-14 logo-invisible" type="submit">
-                      Edit
-                    </Button>
+                    <Link href="/home">
+                      <Button className="text-white purple-bg custom-rounded p-2 font-14 logo-invisible" type="submit" >
+                        Terbitkan
+                      </Button>
+                    </Link>
+                    <Link href="/info-product">
+                      <Button className="purple-outline custom-rounded p-2 font-14 logo-invisible" type="submit">
+                        Edit
+                      </Button>
+                    </Link>
                   </div>
                 </Card.Body>
               </Card>
