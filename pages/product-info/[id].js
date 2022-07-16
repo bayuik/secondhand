@@ -12,8 +12,6 @@ export const getStaticPaths = async () => {
   console.log(response.data.data.Products)
   const data = await response.data.data.Products;
 
-  
-
   const paths = data.map((Products) => {
     return {
       params: { id: Products.id.toString() },
@@ -74,13 +72,13 @@ const Product = ({ products, users }) => {
             <Col sm={6}>
               <Carousel className="product-img">
                 <div>
-                  <Image src="/1.png" alt="image1" className="product_img rounded-3"></Image>
+                  <Image src={`https://api-secondhand-fsw.herokuapp.com/download/${products.product_photo}`} alt="image1" className="product_img rounded-3"></Image>
                 </div>
                 <div>
-                  <Image src={"https://api-secondhand-fsw.herokuapp.com/uploads/" + products.product_photo} alt={products.product_name} className="product_img rounded-3"></Image>
+                  <Image src={`https://api-secondhand-fsw.herokuapp.com/download/${products.product_photo}`} alt={products.product_name} className="product_img rounded-3"></Image>
                 </div>
                 <div>
-                  <Image src={"https://api-secondhand-fsw.herokuapp.com/uploads/" + products.product_photo} alt="image3" className="product_img rounded-3"></Image>
+                  <Image src={`https://api-secondhand-fsw.herokuapp.com/download/${products.product_photo}`} alt="image3" className="product_img rounded-3"></Image>
                 </div>
               </Carousel>
             </Col>

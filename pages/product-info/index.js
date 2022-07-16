@@ -63,7 +63,7 @@ const Product = ({ product }) => {
             <Col md={1} style={{ margin: "50px" }} key={id}>
               <Card style={{ width: "200px" }}>
                 <Card.Link href={`/ProductInfo/${id}`}>
-                  <Card.Img variant="top" src={`https://api-secondhand-fsw.herokuapp.com/uploads/${product_photo}`} style={{ height: "150px" }} />
+                  <Card.Img variant="top" src={`https://api-secondhand-fsw.herokuapp.com/download/${product_photo}`} style={{ height: "150px" }} />
                   <Card.Body>
                     <Card.Title>{product_name}</Card.Title>
                     <Card.Text style={{ fontSize: "13px", color: "#8A8A8A" }}>{category}</Card.Text>
