@@ -1,38 +1,36 @@
 import { Col, Row, Image, Form, Navbar, Nav, Card, Container, Button } from "react-bootstrap";
 import { NavbarSearch } from "../../components";
-import { useState } from "react";
 import Link from "next/link";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
 const Product = () => {
   return (
     <Row>
       <NavbarSearch />
-      <div className="spacing mx-auto">
+      <Col className="spacing mx-auto">
         <Container>
           <Row className="justify-content-md-center">
             <Col sm={6} className="product-carousel">
               <Carousel className="product-img">
-                <div>
+                <Col>
                   <Image src="/1.png" alt="image1" className="product_img rounded-3"></Image>
-                </div>
-                <div>
+                </Col>
+                <Col>
                   <Image src="/1.png" alt="image2" className="product_img rounded-3"></Image>
-                </div>
-                <div>
+                </Col>
+                <Col>
                   <Image src="/1.png" alt="image3" className="product_img rounded-3"></Image>
-                </div>
+                </Col>
               </Carousel>
             </Col>
             <Col sm={4}>
-              <div className="justify-center">
+              <Col className="justify-center">
               <Card className="card-product d-flex">
                 <Card.Body>
                   <Card.Title className="font-14">Jam Tangan Casio</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted font-control">Aksesoris</Card.Subtitle>
                   <Card.Text className="font-14">Rp. 250.000</Card.Text>
-                  <div className="d-grid gap-2 mt-4">
+                  <Col className="d-grid gap-2 mt-4">
                     <Link href="/home">
                       <Button className="text-white purple-bg custom-rounded p-2 font-14 logo-invisible" type="submit" >
                         Terbitkan
@@ -43,16 +41,16 @@ const Product = () => {
                         Edit
                       </Button>
                     </Link>
-                  </div>
+                  </Col>
                 </Card.Body>
               </Card>
-              </div>
+              </Col>
 
-              <div className="justify-center">
+              <Col className="justify-center">
               <Card className="mt-3 card-size card-product mx-auto d-flex">
                 <Card.Body>
                   <Row className="d-flex">
-                    <div className="d-inline-flex">
+                    <Col className="d-inline-flex">
                       <Col md={2}>
                         <Image src="/penjual1.png" alt="penjual1" className="seller_img rounded-3 me-2"></Image>
                       </Col>
@@ -60,16 +58,16 @@ const Product = () => {
                         <h6 className="fw-bold ">Nama Penjual</h6>
                         <Card.Subtitle className="mb-2 text-muted font-control">Kota</Card.Subtitle>
                       </Col>
-                    </div>
+                    </Col>
                   </Row>
                 </Card.Body>
               </Card>
-              </div>
+              </Col>
             </Col>
           </Row>
           <Row className="justify-content-md-center mt-3">
             <Col sm={6}>
-              <div className="justify-center">
+              <Col className="justify-center">
                 <Card className="card-description d-flex">
                   <Card.Body>
                     <Card.Title>Deskripsi</Card.Title>
@@ -85,7 +83,7 @@ const Product = () => {
                     </Card.Text>
                   </Card.Body>
                 </Card>
-              </div>
+              </Col>
             </Col>
             <Col sm={4}></Col>
           </Row>
@@ -98,7 +96,7 @@ const Product = () => {
             </Button>
           </Col>
         </Row>
-      </div>
+      </Col>
     </Row>
   );
 };

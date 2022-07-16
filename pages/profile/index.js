@@ -24,7 +24,6 @@ const Profile = () => {
     if (window.localStorage.getItem("token") === null) {
       Router.push("/login");
     }
-
     setUserId(window.localStorage.getItem("userId"));
   };
 
@@ -70,66 +69,66 @@ const Profile = () => {
 
   return (
     <Row>
-      <div className="logo-invisible">
+      <Col className="logo-invisible">
         <NavbarStandard title="Lengkapi Info Akun" />
-      </div>
+      </Col>
       <ToastContainer />
       <Col md={6} className="my-auto mx-auto">
-        <div className="spacing">
-          <div className="center ">
+        <Col className="spacing">
+          <Col className="center ">
             <p className="title-visible fw-bold"> Lengkapi Info Akun </p>
-          </div>
-          <div className="mx-auto my-auto CamIcon">
+          </Col>
+          <Col className="mx-auto my-auto CamIcon">
             <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url">
               {({ imageList, onImageUpload, onImageUpdate, onImageRemove, isDragging, dragProps }) => (
                 // write your building UI
-                <div className="upload__image-wrapper">
+                <Col className="upload__image-wrapper">
                   {show && (
                     <label htmlFor="file-upload" onClick={() => setShow(!show)}>
                       <FontAwesomeIcon icon={faCamera} className="camera-icon" style={isDragging ? { color: "red" } : undefined} onClick={onImageUpload} {...dragProps} />
                     </label>
                   )}
                   {imageList.map((image, index) => (
-                    <div key={index} className="image-item">
+                    <Col key={index} className="image-item">
                       <Image src={image["data_url"]} alt="" width={130} height={130} onClick={() => onImageUpdate(index)} {...register("photo")} />
                       <input id="file-upload" type="file" className="custom-rounded p-2 image-file" />
-                      <div className="image-item__btn-wrapper" onClick={() => setShow(true)}>
+                      <Col className="image-item__btn-wrapper" onClick={() => setShow(true)}>
                         <button onClick={() => onImageRemove(index)} className="btn text-white purple-bg custom-rounded py-2 px-4 mt-3 font-control">
                           Remove
                         </button>
-                      </div>
-                    </div>
+                      </Col>
+                    </Col>
                   ))}
-                </div>
+                </Col>
               )}
             </ImageUploading>
-          </div>
-          <div className="mx-auto w-75">
+          </Col>
+          <Col className="mx-auto w-75">
             <Form onSubmit={handleSubmit(onSubmit)}>
               <Form.Group controlId="name" className="form-spacing">
                 <Form.Label className="fw-bold font-control">Nama </Form.Label>
-                <Form.Control type="text" placeholder="Nama" className="custom-rounded p-2 font-control form-input" {...register("name" , {required:'name is required'})}/>
+                <Form.Control type="text" placeholder="Nama" className="custom-rounded p-2 font-control form-input" {...register("name", { required: "name is required" })} />
               </Form.Group>
               <Form.Group controlId="kota" className="form-spacing">
                 <Form.Label className="fw-bold font-control">Kota</Form.Label>
-                <Form.Control type="text" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2 font-control form-input" {...register("city", {required:'city is required'})} />
+                <Form.Control type="text" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2 font-control form-input" {...register("city", { required: "city is required" })} />
               </Form.Group>
               <Form.Group controlId="alamat" className="form-spacing">
                 <Form.Label className="fw-bold font-control">Alamat</Form.Label>
-                <textarea className="form-control custom-rounded p-2 font-control " placeholder="Contoh: Jalan Ikan Hiu 33" {...register("address", {required:'address is required'})}></textarea>
+                <textarea className="form-control custom-rounded p-2 font-control " placeholder="Contoh: Jalan Ikan Hiu 33" {...register("address", { required: "address is required" })}></textarea>
               </Form.Group>
               <Form.Group controlId="hp" className="form-spacing">
                 <Form.Label className="fw-bold font-control">No Handphone</Form.Label>
                 <Form.Control type="text" placeholder="contoh: +628123456789" className="custom-rounded p-2 font-control form-input" {...register("phone")} />
               </Form.Group>
-              <div className="d-grid gap-2 mt-4 form-spacing">
+              <Col className="d-grid gap-2 mt-4 form-spacing">
                 <button className="btn text-white purple-bg custom-rounded p-2 ms-2 font-control" type="submit">
                   Simpan
                 </button>
-              </div>
+              </Col>
             </Form>
-          </div>
-        </div>
+          </Col>
+        </Col>
       </Col>
     </Row>
   );

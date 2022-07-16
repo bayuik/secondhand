@@ -7,17 +7,17 @@ const InfoPenawar = () => {
       <div className="logo-invisible">
         <NavbarStandard title="Info Penawar" />
       </div>
-      <div className="mx-auto spacing">
-        <div className="center ">
+      <Col className="mx-auto spacing">
+        <Col className="center ">
           <p className="title-visible fw-bold"> Info-Penawar </p>
-        </div>
+        </Col>
         <Container>
           <Row className="justify-content-md-center ">
             <Col md={{ span: 6 }}>
               <Card className="mt-3 card-size card-product mx-auto">
                 <Card.Body>
                   <Row className="d-flex">
-                    <div className="d-inline-flex">
+                    <Col className="d-inline-flex">
                       <Col md={2}>
                         <Image src="/penjual2.png" alt="penjual1" className="seller_img rounded-3 me-2"></Image>
                       </Col>
@@ -25,7 +25,7 @@ const InfoPenawar = () => {
                         <h6 className="fw-bold ">Nama Penjual</h6>
                         <Card.Subtitle className="mb-2 text-muted font-control">Kota</Card.Subtitle>
                       </Col>
-                    </div>
+                    </Col>
                   </Row>
                 </Card.Body>
               </Card>
@@ -33,16 +33,16 @@ const InfoPenawar = () => {
           </Row>
           <Row className="justify-content-md-center mt-3">
             <Col md={{ span: 6 }}>
-              <div className="d-flex">
-                <div className="me-auto">
+              <Col className="d-flex">
+                <Col className="me-auto">
                   <p className="product-offered-title fw-bold">Daftar produkmu yang di tawar</p>
-                </div>
-              </div>
+                </Col>
+              </Col>
               <CardProductOffered />
             </Col>
           </Row>
         </Container>
-      </div>
+      </Col>
     </Row>
   );
 };

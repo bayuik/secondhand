@@ -1,9 +1,51 @@
-import { Form, Navbar, Nav, Container, ListGroup } from "react-bootstrap";
+import { Col, Form, Navbar, Nav, Container, ListGroup, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LogoImage } from "../../components";
-import { faSearch, faUser, faList, faBell } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import { faSearch, faUser, faList, faBell, faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+
+const ListIconButton = () => {
+  return (
+    <ListGroup horizontal>
+      <div className="ms-auto">
+        <FontAwesomeIcon icon={faList} id="btnIcon" className="icons" />
+        <FontAwesomeIcon icon={faBell} id="btnIcon" className="icons" />
+        <FontAwesomeIcon icon={faUser} id="btnIcon" className="icons" />
+      </div>
+    </ListGroup>
+  );
+};
+
+const LoginButton = () => {
+  const [login, setLogin] = useState(false);
+  const checkLogin = () => {
+    if (window.localStorage.getItem("token") != null) {
+      setLogin(false);
+    } else {
+      setLogin(true);
+    }
+  };
+  useEffect(() => {
+    checkLogin();
+  }, []);
+
+  return (
+    <Col>
+      {login && (
+        <Button href="/login" style={{ backgroundColor: "#7126B5", borderRadius: "10px" }}>
+          <FontAwesomeIcon icon={faArrowRightToBracket} id="btnIcon" className="" />
+          &nbsp; Masuk
+        </Button>
+      )}
+    </Col>
+  );
+};
 
 const NavbarSearch = () => {
+  const router = useRouter();
+  const path = router.pathname;
+
   return (
     <div className="invisible-content">
       <Navbar expand="lg" variant="light" bg="body" fixed="top" className="shadow p-2 mb-5 rounded nav-bar">
@@ -19,14 +61,7 @@ const NavbarSearch = () => {
               </div>
             </Form>
           </Nav>
-
-          <ListGroup horizontal>
-            <div className="ms-auto">
-              <FontAwesomeIcon icon={faList} id="btnIcon" className="icons" />
-              <FontAwesomeIcon icon={faBell} id="btnIcon" className="icons" />
-              <FontAwesomeIcon icon={faUser} id="btnIcon" className="icons" />
-            </div>
-          </ListGroup>
+          {path == "/home" ? <LoginButton /> : <ListIconButton />}
         </Container>
       </Navbar>
     </div>

@@ -42,39 +42,40 @@ const Login = () => {
         });
       });
   };
+  
   return (
     <Row>
       <Col md={6}>
-        <div className="logo-invisible">
+        <Col className="logo-invisible">
           <LoginImage className="logo-invisible" />
-        </div>
+        </Col>
       </Col>
       <Col md={5} className="my-auto ">
-        <div className="mx-auto w-75 form-in-mobile">
+        <Col className="mx-auto w-75 form-in-mobile">
           <h1 className="fw-bold">Masuk</h1>
           <ToastContainer />
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="email" className="mt-3">
               <Form.Label>Email</Form.Label>
-              <Form.Control name="email" type="email" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2" {...register("email", {required:'email is required'})} />
+              <Form.Control name="email" type="email" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2" {...register("email", { required: "email is required" })} />
             </Form.Group>
             <Form.Group controlId="password" className="mt-3">
               <Form.Label>Password</Form.Label>
-              <Form.Control name="password" type="password" placeholder="Masukkan password" className="custom-rounded p-2" {...register("password", {required:'password is required'})} />
+              <Form.Control name="password" type="password" placeholder="Masukkan password" className="custom-rounded p-2" {...register("password", { required: "password is required" })} />
             </Form.Group>
-            <div className="d-grid gap-2 mt-4">
+            <Col className="d-grid gap-2 mt-4">
               <button className="btn text-white purple-bg custom-rounded p-2" type="submit">
                 Masuk
               </button>
-            </div>
+            </Col>
           </Form>
-          <div className="text-center mt-4">
+          <Col className="text-center mt-4">
             <p className="d-inline">Belum punya akun? </p>
             <Link href="/register">
               <a className="purple-text fw-bold text-decoration-none">Daftar di sini</a>
             </Link>
-          </div>
-        </div>
+          </Col>
+        </Col>
       </Col>
     </Row>
   );
