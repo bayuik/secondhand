@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-
+import Header from '../../components/Header'
 export const getStaticProps = async () => {
-  let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product");
+  let response = await axios.get("http://localhost:8000/product");
   console.log(response.data.data.Products);
   const data = await response.data.data.Products;
   return {
@@ -19,7 +19,7 @@ export const getStaticProps = async () => {
 const Home = ({ product }) => {
   return (
     <Row>
-      <div className="invisible-content">
+      {/* <div className="invisible-content">
         <Navbar expand="lg" variant="light" bg="body" fixed="top" className="shadow p-2 mb-5 rounded nav-bar">
           <Container>
             <Navbar.Brand href="#">
@@ -40,7 +40,8 @@ const Home = ({ product }) => {
             </Button>
           </Container>
         </Navbar>
-      </div>
+      </div> */}
+      <Header/>
       <br />
       <br />
       <br />
@@ -58,12 +59,12 @@ const Home = ({ product }) => {
         </Carousel>
       </div>
       <Row className="justify-content-md-left">
-        {product.map(({id, product_name, product_photo, category, price}) => {
+        {product.map(({id, product_name, product_photo, category}) => {
           return (
             <Col md={1} style={{ margin: "50px" }} key={id}>
               <Card style={{ width: "200px" }}>
                 <Card.Link href={`/ProductInfo/${id}`}>
-                  <Card.Img variant="top" src={`https://api-secondhand-fsw.herokuapp.com/uploads/${product_photo}`} style={{ height: "150px" }} />
+                  <Card.Img variant="top" src={`http://localhost:8000/uploads/${product_photo}`} style={{ height: "150px" }} />
                   <Card.Body>
                     <Card.Title>{product_name}</Card.Title>
                     <Card.Text style={{ fontSize: "13px", color: "#8A8A8A" }}>{category}</Card.Text>

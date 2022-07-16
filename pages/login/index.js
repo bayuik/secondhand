@@ -1,17 +1,17 @@
 import { Col, Row, Form } from "react-bootstrap";
 import Link from "next/link";
-import Router from "next/router";
 import { LoginImage } from "../../components";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = async (data) => {
     const { email, password } = data;
     const res = await axios
-      .post("https://api-secondhand-fsw.herokuapp.com/login", {
+      .post("http://localhost:8000/login", {
         email,
         password,
       })
@@ -25,10 +25,6 @@ const Login = () => {
           draggable: true,
           progress: undefined,
         });
-        window.localStorage.setItem("token", val.data.data.token);
-        window.localStorage.setItem("isLogin", true);
-        window.localStorage.setItem("userId", val.data.data.id);
-        Router.push("/");
       })
       .catch((err) => {
         toast.error("Invalid Email or Password", {
@@ -45,9 +41,9 @@ const Login = () => {
   return (
     <Row>
       <Col md={6}>
-        <div className="logo-invisible">
-          <LoginImage className="logo-invisible" />
-        </div>
+      <div className="logo-invisible">
+        <LoginImage className="logo-invisible"/>
+      </div>
       </Col>
       <Col md={5} className="my-auto ">
         <div className="mx-auto w-75 form-in-mobile">
@@ -56,16 +52,18 @@ const Login = () => {
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="email" className="mt-3">
               <Form.Label>Email</Form.Label>
-              <Form.Control name="email" type="email" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2" {...register("email", {required:'email is required'})} />
+              <Form.Control name="email" type="email" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2" {...register("email")} />
             </Form.Group>
             <Form.Group controlId="password" className="mt-3">
               <Form.Label>Password</Form.Label>
-              <Form.Control name="password" type="password" placeholder="Masukkan password" className="custom-rounded p-2" {...register("password", {required:'password is required'})} />
+              <Form.Control name="password" type="password" placeholder="Masukkan password" className="custom-rounded p-2" {...register("password")} />
             </Form.Group>
             <div className="d-grid gap-2 mt-4">
-              <button className="btn text-white purple-bg custom-rounded p-2" type="submit">
-                Masuk
-              </button>
+              <Link href="/profile">
+                <button className="btn text-white purple-bg custom-rounded p-2" type="submit">
+                  Masuk
+                </button>
+              </Link>
             </div>
           </Form>
           <div className="text-center mt-4">
