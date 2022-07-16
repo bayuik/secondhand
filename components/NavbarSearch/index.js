@@ -8,11 +8,11 @@ import { faSearch, faUser, faList, faBell, faArrowRightToBracket } from "@fortaw
 const ListIconButton = () => {
   return (
     <ListGroup horizontal>
-      <div className="ms-auto">
+      <Col className="ms-auto">
         <FontAwesomeIcon icon={faList} id="btnIcon" className="icons" />
         <FontAwesomeIcon icon={faBell} id="btnIcon" className="icons" />
         <FontAwesomeIcon icon={faUser} id="btnIcon" className="icons" />
-      </div>
+      </Col>
     </ListGroup>
   );
 };
@@ -31,14 +31,14 @@ const LoginButton = () => {
   }, []);
 
   return (
-    <Col>
+    <>
       {login && (
         <Button href="/login" style={{ backgroundColor: "#7126B5", borderRadius: "10px" }}>
           <FontAwesomeIcon icon={faArrowRightToBracket} id="btnIcon" className="" />
           &nbsp; Masuk
         </Button>
       )}
-    </Col>
+    </>
   );
 };
 
@@ -47,7 +47,7 @@ const NavbarSearch = () => {
   const path = router.pathname;
 
   return (
-    <div className="invisible-content">
+    <Col className="invisible-content">
       <Navbar expand="lg" variant="light" bg="body" fixed="top" className="shadow p-2 mb-5 rounded nav-bar">
         <Container>
           <Navbar.Brand href="/">
@@ -55,16 +55,16 @@ const NavbarSearch = () => {
           </Navbar.Brand>
           <Nav className="me-auto">
             <Form className="d-flex">
-              <div className="search-box">
+              <Col className="search-box">
                 <Form.Control type="search" placeholder="Cari di sini..." className=" sbox me-auto" aria-label="Search" />
                 <FontAwesomeIcon icon={faSearch} id="btnIcon" />
-              </div>
+              </Col>
             </Form>
           </Nav>
           {path == "/home" ? <LoginButton /> : <ListIconButton />}
         </Container>
       </Navbar>
-    </div>
+    </Col>
   );
 };
 

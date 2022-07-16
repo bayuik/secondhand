@@ -27,7 +27,9 @@ const Register = () => {
           draggable: true,
           progress: undefined,
         });
-        Router.push("/login");
+        setTimeout(() => {
+          Router.push("/login");
+        }, 2000);
       })
       .catch((err) => {
         toast.error("Register Failed", {
@@ -50,7 +52,7 @@ const Register = () => {
         </Col>
       </Col>
       <Col md={6} className="my-auto">
-        <ToastContainer/>
+        <ToastContainer />
         <Col className="mx-auto w-75 form-in-mobile">
           <h1 className="fw-bold">Daftar</h1>
           <Form onSubmit={handleSubmit(onSubmit)}>

@@ -38,7 +38,7 @@ const Product = ({ products, users }) => {
   return (
     <Row>
       <NavbarSearch />
-      <Col className="spacing mx-auto">
+      <Container className="spacing mx-auto">
         <Container>
           <Row className="justify-content-md-center">
             <Col sm={6}>
@@ -94,7 +94,7 @@ const Product = ({ products, users }) => {
             <Col sm={4}></Col>
           </Row>
         </Container>
-      </Col>
+      </Container>
     </Row>
   );
 };

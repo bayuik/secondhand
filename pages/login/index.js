@@ -42,7 +42,7 @@ const Login = () => {
         });
       });
   };
-  
+
   return (
     <Row>
       <Col md={6}>
