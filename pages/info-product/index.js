@@ -1,4 +1,4 @@
-import { Col, Row, Form, Image } from "react-bootstrap";
+import { Col, Row, Form } from "react-bootstrap";
 import { NavbarStandard } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -6,37 +6,33 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import React from "react";
-import ImageUploading from 'react-images-uploading';
-import Router from "next/router";
 
 function InfoProduct() {
 
-  const [show, setShow] = useState(true);
-  const [images, setImages] = React.useState([]);
-  const maxNumber = 69;
-
-  const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
-    console.log(imageList, addUpdateIndex);
-    setImages(imageList);
-  };
-
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = async (data) => {
-    const { product_name, price, category, description, product_photo } = data;
+    const { product_photo, product_name, price, category, user_id, description} = data;
     const res = await axios
-      .post("https://api-secondhand-fsw.herokuapp.com/product", {
-        product_name, price, category, description, product_photo
+      .post("http://localhost:8000/product", {
+        product_photo, product_name, price, category, user_id, description
       })
       .then((val) => {
-        Router.push("/product");
+        window.location.href = "/home";
       })
       .catch((err) => {
         alert(JSON.stringify(data));
       });
   };
 
- 
+  const [image, setImage] = useState({ faPlus });
+  const [saveImage, setSaveImage] = useState(null);
+
+  function handleUploadChange(e) {
+    console.log(e.target.files[0]);
+    let Uploaded = e.target.files[0];
+    setImage(URL.createObjectURL(Uploaded));
+    setSaveImage(Uploaded);
+  }
 
   return (
     <Row>
@@ -46,11 +42,11 @@ function InfoProduct() {
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="produk" className="mt-3">
               <Form.Label className="fw-bold">Nama Produk</Form.Label>
-              <Form.Control type="text" placeholder="Nama Produk" className="custom-rounded p-2" {...register("product_name" , {required:'product name is required'})} />
+              <Form.Control type="text" placeholder="Nama Produk" className="custom-rounded p-2" {...register("product_name")} />
             </Form.Group>
             <Form.Group controlId="harga" className="mt-3">
               <Form.Label className="fw-bold">Harga Produk</Form.Label>
-              <Form.Control type="text" placeholder="Rp 0,00" className="custom-rounded p-2" {...register("price" , {required:'price is required'})}/>
+              <Form.Control type="text" placeholder="Rp 0,00" className="custom-rounded p-2" {...register("price")}/>
             </Form.Group>
             <Form.Group controlId="kategori" className="mt-3">
               <Form.Label className="fw-bold">Kategori</Form.Label>
@@ -58,10 +54,10 @@ function InfoProduct() {
               {...register("category", {required:'category is required'})}>
                 <option value="">Pilih Ketegori</option>
                 <option value="Hobi">Hobi</option>
-                <option value="kendaraan">Kendaran</option>
-                <option value="baju">Baju</option>
-                <option value="elektronik">Elektronik</option>
-                <option value="kesehatan">Kesehatan</option>
+                <option value="Kendaraan">Kendaran</option>
+                <option value="Baju">Baju</option>
+                <option value="Elektronik">Elektronik</option>
+                <option value="Kesehatan">Kesehatan</option>
               </Form.Select>
             </Form.Group>
             <div>
@@ -69,33 +65,19 @@ function InfoProduct() {
             </div>
             <Form.Group controlId="deskripsi" className="mt-3">
               <Form.Label className="fw-bold">Deskripsi</Form.Label>
-              <textarea className="form-control custom-rounded p-2" placeholder="Contoh: Jalan Ikan Hiu 33" {...register("description", {required:'description is required'})}></textarea>
+              <textarea className="form-control custom-rounded p-2" placeholder="Contoh: Jalan Ikan Hiu 33" {...register("description")}></textarea>
+            </Form.Group>
+            <Form.Group controlId="deskripsi" className="mt-3">
+              <Form.Label className="fw-bold">User ID</Form.Label>
+              <textarea className="form-control custom-rounded p-2" placeholder="Contoh: Jalan Ikan Hiu 33" {...register("user_id")}></textarea>
             </Form.Group>
             <Form.Group controlId="image-product" className="mt-3">
               <Form.Label className="fw-bold">Foto Produk</Form.Label>
               <br></br>
-              <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url">
-                {({imageList, onImageUpload, onImageUpdate, onImageRemove, isDragging, dragProps}) => (
-                // write your building UI
-                  <div className="upload__image-wrapper">
-                    {show &&
-                    <label htmlFor="file-upload" onClick={() => setShow(!show)}>
-                    <FontAwesomeIcon icon={faPlus} id="btnIcon" className="plus-icon" 
-                    style={isDragging ? { color: 'red' } : undefined}  
-                    onClick={onImageUpload}{...dragProps}/>
-                    </label>}
-                    {imageList.map((image, index) => (
-                      <div key={index} className="image-item">
-                        <Image src={image['data_url']} alt="" width={130} height={130} onClick={() => onImageUpdate(index)} {...register("product_photo" , {required:'image is required'})}/>
-                        <input id="file-upload" type="file" className="custom-rounded p-2 image-file"/>
-                        <div className="image-item__btn-wrapper" onClick={() => setShow(true)}>
-                          <button onClick={() => onImageRemove(index)} className="btn text-white purple-bg custom-rounded py-2 px-4 mt-3 font-control">Remove</button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </ImageUploading>
+              <label htmlFor="file-upload">
+                <FontAwesomeIcon icon={faPlus} id="btnIcon" className="plus-icon" />
+              </label>
+              <input id="file-upload" onChange={handleUploadChange} type="file" className="custom-rounded p-2 image-file" {...register("prodcut_photo")}/>
             </Form.Group>
             <div className="d-grid gap-2 mt-4">
               <div className="btn-group" role="group">

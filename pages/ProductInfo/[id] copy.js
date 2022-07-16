@@ -10,19 +10,18 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { useState, useEffect } from "react";
 import{io} from 'socket.io-client';
-import Header from '../../components/Header'
 const socket = io.connect("http://localhost:5000");
 global.moment = require('moment-timezone')
 export const getStaticPaths = async () => {
   let response = await axios.get("http://localhost:8000/product")
-  console.log(response.data.data.Products)
-  const data = await response.data.data.Products;
+  console.log(response.data.data.products)
+  const data = await response.data.data.products;
 
   
 
-  const paths = data.map((Products) => {
+  const paths = data.map((products) => {
     return {
-      params: { id: Products.id.toString() },
+      params: { id: products.id.toString() },
     };
   });
 
@@ -36,8 +35,8 @@ export const getStaticProps = async (context) => {
   const id = context.params.id;
 
   let response = await axios.get("http://localhost:8000/product/" + id)
-  console.log(response.data.data.Products)
-  const data = await response.data.data.Products;
+  console.log(response.data.data.products)
+  const data = await response.data.data.products;
   console.log("asade", data.user_id)
   
   let responses = await axios.get("http://localhost:8000/profile/"+ data.user_id)
@@ -74,7 +73,27 @@ const Product = ({products, users}) => {
   },[socket])
   return (
     <Row>
-      <Header/>
+        <div className="invisible-content">
+        <Navbar expand="lg" variant="light" bg="body" fixed="top" className="shadow p-2 mb-5 rounded nav-bar">
+            <Container>
+            <Navbar.Brand href="#"><LogoImage /></Navbar.Brand>
+            <Nav className="me-auto">
+                <Form className="d-flex">
+                <Form.Control type="search" placeholder="Cari di sini..." className="search-box me-auto" aria-label="Search"/>
+                <FontAwesomeIcon icon={faSearch} id="btnIcon" className="" style={{marginTop:"13px", marginLeft:"10px"}}/>
+                </Form>
+            </Nav>
+            <FontAwesomeIcon icon={faBell} id="btnIcon" onClick={handleShow} />
+            {dataDiterima.length}
+            &nbsp;
+            <Button style={{backgroundColor:"#7126B5", borderRadius:'10px'}}>
+                <FontAwesomeIcon icon={faArrowRightToBracket} id="btnIcon" className="" />
+                &nbsp;
+                Masuk
+            </Button>
+            </Container>
+        </Navbar>
+        </div>
 
       <div className="spacing mx-auto">
       <Container >

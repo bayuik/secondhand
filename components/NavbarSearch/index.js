@@ -8,7 +8,7 @@ const NavbarSearch = () => {
     <div className="invisible-content">
       <Navbar expand="lg" variant="light" bg="body" fixed="top" className="shadow p-2 mb-5 rounded nav-bar">
         <Container>
-          <Navbar.Brand href="/">
+          <Navbar.Brand href="#">
             <LogoImage />
           </Navbar.Brand>
           <Nav className="me-auto">
