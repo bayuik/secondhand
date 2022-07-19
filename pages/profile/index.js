@@ -17,7 +17,7 @@ const Profile = () => {
   const [userId, setUserId] = useState(null);
   const maxNumber = 69;
 
-  const onChange = (imageList, addUpdateIndex) => {
+  const onChange = (imageList) => {
     setImages(imageList);
   };
 

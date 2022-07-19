@@ -8,45 +8,61 @@ import axios from "axios";
 import React from "react";
 import ImageUploading from "react-images-uploading";
 import Router from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import FormData from "form-data";
+
 
 const InfoProduct = () => {
   const [show, setShow] = useState(true);
   const [images, setImages] = useState([]);
   const maxNumber = 69;
 
-  const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
-    console.log(imageList, addUpdateIndex);
+  const onChange = (imageList) => {
     setImages(imageList);
   };
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, errors} = useForm();
   const onSubmit = async (data) => {
-    const { product_name, price, category, description, product_photo } = data;
-    const res = await axios
-      .post("https://api-secondhand-fsw.herokuapp.com/product", {
-        product_name,
-        price,
-        category,
-        description,
-        product_photo,
-      })
-      .then((val) => {
+    try {
+      const { product_name, price, category, description, product_photo } = data;
+      const formData = new FormData();
+      formData.append("product_name", product_name);
+      formData.append("price", price);
+      formData.append("category", category);
+      formData.append("description", description);
+      formData.append("product_photo", images[0].file);
+      const res = await axios.post("https://api-secondhand-fsw.herokuapp.com/product", {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        toast.success("Add Product Success", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         Router.push("/product");
-      })
-      .catch((err) => {
-        alert(JSON.stringify(data));
+    } catch (err) {
+        toast.error(`Add Product Failed`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
+    }
   };
 
   return (
     <Row>
       <NavbarStandard title="" />
+      <ToastContainer />
       <Col md={6} className="my-auto mx-auto">
         <Col className="mx-auto w-75 spacing">
           <Form onSubmit={handleSubmit(onSubmit)}>
@@ -69,7 +85,7 @@ const InfoProduct = () => {
                 <option value="kesehatan">Kesehatan</option>
               </Form.Select>
             </Form.Group>
-            <Col>{errors.category && <span className="text-sm text-red-500">{errors.category.message}</span>}</Col>
+            {/* <Col>{errors.category && <span className="text-sm text-red-500">{errors.category.message}</span>}</Col> */}
             <Form.Group controlId="deskripsi" className="mt-3">
               <Form.Label className="fw-bold">Deskripsi</Form.Label>
               <textarea className="form-control custom-rounded p-2" placeholder="Contoh: Jalan Ikan Hiu 33" {...register("description", { required: "description is required" })}></textarea>
@@ -88,8 +104,8 @@ const InfoProduct = () => {
                     )}
                     {imageList.map((image, index) => (
                       <Col key={index} className="image-item">
-                        <Image src={image["data_url"]} alt="" width={130} height={130} onClick={() => onImageUpdate(index)} {...register("product_photo", { required: "image is required" })} />
-                        <input id="file-upload" type="file" className="custom-rounded p-2 image-file" />
+                        <Image src={image["data_url"]} alt="" width={130} height={130} onClick={() => onImageUpdate(index)} />
+                        <Form.Control id="file-upload" type="file" className="custom-rounded p-2 image-file" {...register("product_photo")} />
                         <Col className="image-item__btn-wrapper" onClick={() => setShow(true)}>
                           <button onClick={() => onImageRemove(index)} className="btn text-white purple-bg custom-rounded py-2 px-4 mt-3 font-control">
                             Remove
