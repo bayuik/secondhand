@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LogoImage } from "../../components";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { faSearch, faUser, faList, faBell, faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 
 const ListIconButton = () => {
@@ -11,7 +12,11 @@ const ListIconButton = () => {
       <Col className="ms-auto">
         <FontAwesomeIcon icon={faList} id="btnIcon" className="icons" />
         <FontAwesomeIcon icon={faBell} id="btnIcon" className="icons" />
-        <FontAwesomeIcon icon={faUser} id="btnIcon" className="icons" />
+        <Link href="/profile">
+          <a className="text-dark">
+            <FontAwesomeIcon icon={faUser} id="btnIcon" className="icons" />
+          </a>
+        </Link>
       </Col>
     </ListGroup>
   );

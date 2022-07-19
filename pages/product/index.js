@@ -1,4 +1,4 @@
-import { Col, Row, Image, Form, Navbar, Nav, Card, Container, Button } from "react-bootstrap";
+import { Col, Row, Image, Card, Container, Button } from "react-bootstrap";
 import { NavbarSearch } from "../../components";
 import Link from "next/link";
 import { Carousel } from "react-responsive-carousel";

@@ -9,6 +9,7 @@ import ImageUploading from "react-images-uploading";
 import Router from "next/router";
 import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import FormData from "form-data";
 
 const Profile = () => {
   const [show, setShow] = useState(true);
@@ -16,7 +17,7 @@ const Profile = () => {
   const [userId, setUserId] = useState(null);
   const maxNumber = 69;
 
-  const onChange = (imageList, addUpdateIndex) => {
+  const onChange = (imageList) => {
     setImages(imageList);
   };
 
@@ -33,38 +34,40 @@ const Profile = () => {
 
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = async (data) => {
-    const { name, city, address, phone, photo } = data;
-    const res = await axios
-      .put(`https://api-secondhand-fsw.herokuapp.com/profile/${userId}`, {
-        name,
-        city,
-        address,
-        phone,
-        photo,
-      })
-      .then((val) => {
-        toast.success("Update Profile Success", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        Router.push("/");
-      })
-      .catch((err) => {
-        toast.error("Update Profile Failed", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+    try {
+      const { name, city, address, phone, photo } = data;
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("city", city);
+      formData.append("address", address);
+      formData.append("phone", phone);
+      formData.append("photo", images[0].file);
+      const res = await axios.put(`https://api-secondhand-fsw.herokuapp.com/profile/${userId}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
+      toast.success("Update Profile Success", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      Router.push("/");
+    } catch (err) {
+      toast.error(`Update Profile Failed`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   return (
@@ -78,33 +81,34 @@ const Profile = () => {
           <Col className="center ">
             <p className="title-visible fw-bold"> Lengkapi Info Akun </p>
           </Col>
-          <Col className="mx-auto my-auto CamIcon">
-            <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url">
-              {({ imageList, onImageUpload, onImageUpdate, onImageRemove, isDragging, dragProps }) => (
-                // write your building UI
-                <Col className="upload__image-wrapper">
-                  {show && (
-                    <label htmlFor="file-upload" onClick={() => setShow(!show)}>
-                      <FontAwesomeIcon icon={faCamera} className="camera-icon" style={isDragging ? { color: "red" } : undefined} onClick={onImageUpload} {...dragProps} />
-                    </label>
-                  )}
-                  {imageList.map((image, index) => (
-                    <Col key={index} className="image-item">
-                      <Image src={image["data_url"]} alt="" width={130} height={130} onClick={() => onImageUpdate(index)} {...register("photo")} />
-                      <input id="file-upload" type="file" className="custom-rounded p-2 image-file" />
-                      <Col className="image-item__btn-wrapper" onClick={() => setShow(true)}>
-                        <button onClick={() => onImageRemove(index)} className="btn text-white purple-bg custom-rounded py-2 px-4 mt-3 font-control">
-                          Remove
-                        </button>
-                      </Col>
-                    </Col>
-                  ))}
-                </Col>
-              )}
-            </ImageUploading>
-          </Col>
           <Col className="mx-auto w-75">
             <Form onSubmit={handleSubmit(onSubmit)}>
+              <Col className="mx-auto my-auto CamIcon">
+                <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url">
+                  {({ imageList, onImageUpload, onImageUpdate, onImageRemove, isDragging, dragProps }) => (
+                    // write your building UI
+                    <Col className="upload__image-wrapper">
+                      {show && (
+                        <label htmlFor="file-upload" onClick={() => setShow(!show)}>
+                          <FontAwesomeIcon icon={faCamera} className="camera-icon" style={isDragging ? { color: "red" } : undefined} onClick={onImageUpload} {...dragProps} />
+                        </label>
+                      )}
+                      {imageList.map((image, index) => (
+                        <Col key={index} className="image-item">
+                          <Image src={image["data_url"]} alt="" width={130} height={130} onClick={() => onImageUpdate(index)} />
+                          {/* <Form.Control id="file-upload" type="file" {...register("photo")} /> */}
+                          <Form.Control id="file-upload" type="file" className="custom-rounded p-2 image-file" {...register("photo")} />
+                          <Col className="image-item__btn-wrapper" onClick={() => setShow(true)}>
+                            <button onClick={() => onImageRemove(index)} className="btn text-white purple-bg custom-rounded py-2 px-4 mt-3 font-control">
+                              Remove
+                            </button>
+                          </Col>
+                        </Col>
+                      ))}
+                    </Col>
+                  )}
+                </ImageUploading>
+              </Col>
               <Form.Group controlId="name" className="form-spacing">
                 <Form.Label className="fw-bold font-control">Nama </Form.Label>
                 <Form.Control type="text" placeholder="Nama" className="custom-rounded p-2 font-control form-input" {...register("name", { required: "name is required" })} />
