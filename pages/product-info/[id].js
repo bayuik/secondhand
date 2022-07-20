@@ -94,7 +94,7 @@ const Product = ({products, users}) => {
                       <Image src="/1.png" alt="image1" className="product_img rounded-3"></Image>
                     </div>
                     <div>
-                      <Image src={"https://api-secondhand-fsw.herokuapp.com/uploads/"+products.product_photo} className="product_img rounded-3"></Image>
+                      <Image src={"https://api-secondhand-fsw.herokuapp.com/uploads/"+products.product_photo} alt="image2" className="product_img rounded-3"></Image>
                     </div>
                     <div>
                       <Image src={"https://api-secondhand-fsw.herokuapp.com/uploads/"+products.product_photo} alt="image3" className="product_img rounded-3"></Image>

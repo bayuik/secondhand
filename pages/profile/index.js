@@ -95,7 +95,7 @@ const Profile = () => {
                       )}
                       {imageList.map((image, index) => (
                         <Col key={index} className="image-item">
-                          <Image src={image["data_url"]} alt="" width={130} height={130} onClick={() => onImageUpdate(index)} />
+                          <Image src={image["data_url"]} alt="image profile" width={130} height={130} onClick={() => onImageUpdate(index)} />
                           {/* <Form.Control id="file-upload" type="file" {...register("photo")} /> */}
                           <Form.Control id="file-upload" type="file" className="custom-rounded p-2 image-file" {...register("photo")} />
                           <Col className="image-item__btn-wrapper" onClick={() => setShow(true)}>

@@ -31,7 +31,7 @@ const InfoProduct = () => {
       formData.append("category", category);
       formData.append("description", description);
       formData.append("product_photo", images[0].file);
-      const res = await axios.post("https://api-secondhand-fsw.herokuapp.com/product", {
+      const res = await axios.post("https://api-secondhand-fsw.herokuapp.com/product",formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -98,14 +98,14 @@ const InfoProduct = () => {
                   // write your building UI
                   <Col className="upload__image-wrapper">
                     {show && (
-                      <label htmlFor="file-upload" onClick={() => setShow(!show)}>
-                        <FontAwesomeIcon icon={faPlus} id="btnIcon" className="plus-icon" style={isDragging ? { color: "red" } : undefined} onClick={onImageUpload} {...dragProps} />
+                      <label onClick={() => setShow(!show)}>
+                        <FontAwesomeIcon icon={faPlus} className="plus-icon" style={isDragging ? { color: "red" } : undefined} onClick={onImageUpload} {...dragProps} />
                       </label>
                     )}
                     {imageList.map((image, index) => (
                       <Col key={index} className="image-item">
-                        <Image src={image["data_url"]} alt="" width={130} height={130} onClick={() => onImageUpdate(index)} />
-                        <Form.Control id="file-upload" type="file" className="custom-rounded p-2 image-file" {...register("product_photo")} />
+                        <Image src={image["data_url"]} alt="description of image" width={130} height={130} onClick={() => onImageUpdate(index)} />
+                        <Form.Control type="file" className="custom-rounded p-2 image-file" {...register("product_photo")} />
                         <Col className="image-item__btn-wrapper" onClick={() => setShow(true)}>
                           <button onClick={() => onImageRemove(index)} className="btn text-white purple-bg custom-rounded py-2 px-4 mt-3 font-control">
                             Remove
