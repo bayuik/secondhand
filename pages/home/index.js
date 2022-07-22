@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Col, Row, Card} from "react-bootstrap";
 import { Banner, NavbarSearch } from "../../components";
+import Header from "../../components/Header";
 
 const Home = () => {
   const [product, setProducts] = useState([]);
 
   const getProducts = async () => {
     try {
-      let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product");
+      let response = await axios.get("http://localhost:8000/product");
       setProducts(response.data.data.Products);
     } catch (error) {
       console.log(error);
@@ -23,6 +24,7 @@ const Home = () => {
     <Row>
       <NavbarSearch />
       <Banner />
+      <Header/>
       <Row className="justify-content-md-left">
         {product &&
           product.map(({ id, product_photo, product_name, category, price }) => {
