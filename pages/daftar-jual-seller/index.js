@@ -20,7 +20,6 @@ function Product() {
   // fetch data api
   const getProducts = async () => {
     const response = await axios.get("http://localhost:3000/");
-    // console.log(response.data);
     setProduct(response.data);
   };
 
@@ -85,7 +84,7 @@ function Product() {
           </div>
           <div className="card-seller ">
             <div className="card-item me-4">
-              <Link href="/info-product">
+              <Link href="/add-product">
                 <button type="button" className="button-card btn btn-outline-dark" style={{ width: "14rem" }}>
                   <p className="icon-plus m-0">
                     <FontAwesomeIcon icon={faPlus} id="btnIcon" className="me-2" />

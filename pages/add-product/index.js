@@ -11,7 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import FormData from "form-data";
 
 
-const InfoProduct = () => {
+const AddProduct = () => {
   const [show, setShow] = useState(true);
   const [images, setImages] = useState([]);
   const maxNumber = 69;
@@ -24,12 +24,14 @@ const InfoProduct = () => {
   const onSubmit = async (data) => {
     try {
       const { product_name, price, category, description, product_photo } = data;
+      const userId = localStorage.getItem("userId");
       const formData = new FormData();
       formData.append("product_name", product_name);
       formData.append("price", price);
       formData.append("category", category);
       formData.append("description", description);
       formData.append("product_photo", images[0].file);
+      formData.append("user_id", userId);
       const res = await axios.post("https://api-secondhand-fsw.herokuapp.com/product",formData, {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -44,7 +46,7 @@ const InfoProduct = () => {
           draggable: true,
           progress: undefined,
         });
-        Router.push("/product");
+        Router.push("/home");
     } catch (err) {
         toast.error(`Add Product Failed`, {
         position: "top-center",
@@ -71,7 +73,7 @@ const InfoProduct = () => {
             </Form.Group>
             <Form.Group controlId="harga" className="mt-3">
               <Form.Label className="fw-bold">Harga Produk</Form.Label>
-              <Form.Control type="text" placeholder="Rp 0,00" className="custom-rounded p-2" {...register("price", { required: "price is required" })} />
+              <Form.Control type="number" placeholder="Rp 0,00" className="custom-rounded p-2" {...register("price", { required: "price is required" })} />
             </Form.Group>
             <Form.Group controlId="kategori" className="mt-3">
               <Form.Label className="fw-bold">Kategori</Form.Label>
@@ -133,4 +135,4 @@ const InfoProduct = () => {
   );
 };
 
-export default InfoProduct;
+export default AddProduct;

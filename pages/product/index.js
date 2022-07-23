@@ -36,7 +36,7 @@ const Product = () => {
                           Terbitkan
                         </Button>
                       </Link>
-                      <Link href="/info-product">
+                      <Link href="/add-product">
                         <Button className="purple-outline custom-rounded p-2 font-14 logo-invisible" type="submit">
                           Edit
                         </Button>
