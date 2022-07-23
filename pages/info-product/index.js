@@ -5,7 +5,6 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import React from "react";
 import ImageUploading from "react-images-uploading";
 import Router from "next/router";
 import { ToastContainer, toast } from "react-toastify";
@@ -31,7 +30,7 @@ const InfoProduct = () => {
       formData.append("category", category);
       formData.append("description", description);
       formData.append("product_photo", images[0].file);
-      const res = await axios.post("http://localhost:8000/product",formData, {
+      const res = await axios.post("https://api-secondhand-fsw.herokuapp.com/product",formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

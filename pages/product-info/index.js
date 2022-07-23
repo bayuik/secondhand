@@ -13,7 +13,7 @@ function Product({id}) {
 
   const getProducts = async () => {
       try{
-          let response = await axios.get("http://localhost:8000/product")
+          let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product")
           console.log(response.data.data.Products)
           setProducts(response.data.data.Products)
       }catch(e) {

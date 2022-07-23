@@ -31,6 +31,7 @@ const LoginButton = () => {
       setLogin(true);
     }
   };
+
   useEffect(() => {
     checkLogin();
   }, []);
