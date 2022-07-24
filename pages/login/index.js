@@ -11,7 +11,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     const { email, password } = data;
     const res = await axios
-      .post("https://api-secondhand-fsw.herokuapp.com/login", {
+      .post("http://localhost:8000/login", {
         email,
         password,
       })

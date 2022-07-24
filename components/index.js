@@ -8,5 +8,6 @@ import CardProductOffered from "./CardProductOffered";
 import CardList from "./CardList";
 import Banner from "./Banner";
 import ButtonSell from "./ButtonSell";
+import Notification from "./Notification";
 
-export { LoginImage, LogoImage, NavbarStandard, CardProduct, Modal, NavbarSearch, CardProductOffered, CardList, Banner, ButtonSell };
+export { Notification, LoginImage, LogoImage, NavbarStandard, CardProduct, Modal, NavbarSearch, CardProductOffered, CardList, Banner, ButtonSell };

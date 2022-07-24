@@ -27,7 +27,7 @@ function Product() {
     <Row>
       <NavbarSearch />
       <div className="spacing mx-auto">
-      {/* <Header /> */}
+      <NavbarSearch />
       <div id="daftarjual" className="container content position-relative">
         <Row>
           <Col md={12} className="d-flex mb-3 ">

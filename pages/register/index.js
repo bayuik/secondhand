@@ -12,7 +12,7 @@ const Register = () => {
   const onSubmit = async (data) => {
     const { name, email, password } = data;
     const res = await axios
-      .post("https://api-secondhand-fsw.herokuapp.com/register", {
+      .post("http://localhost:8000/register", {
         name,
         email,
         password,

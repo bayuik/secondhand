@@ -1,24 +1,39 @@
-import { Col, Form, Navbar, Nav, Container, ListGroup, Button } from "react-bootstrap";
+import { Col, Form, Navbar, Nav, Container, ListGroup, Button, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { LogoImage } from "../../components";
+import { LogoImage, Notification } from "../../components";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { faSearch, faUser, faList, faBell, faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 
 const ListIconButton = () => {
+  const [show, setShow] = useState(false);
+
   return (
-    <ListGroup horizontal>
-      <Col className="ms-auto">
-        <FontAwesomeIcon icon={faList} id="btnIcon" className="icons" />
-        <FontAwesomeIcon icon={faBell} id="btnIcon" className="icons" />
-        <Link href="/profile">
-          <a className="text-dark">
-            <FontAwesomeIcon icon={faUser} id="btnIcon" className="icons" />
-          </a>
-        </Link>
-      </Col>
-    </ListGroup>
+    <>
+      <ListGroup horizontal>
+        <Col className="ms-auto">
+          <FontAwesomeIcon icon={faList} id="btnIcon" className="icons" />
+          <FontAwesomeIcon icon={faBell} id="btnIcon" className="icons" onClick={() => setShow(true)} />
+          <Link href="/profile">
+            <a className="text-dark">
+              <FontAwesomeIcon icon={faUser} id="btnIcon" className="icons" />
+            </a>
+          </Link>
+        </Col>
+      </ListGroup>
+      <Modal show={show} onHide={() => setShow(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Notifikasi</Modal.Title>
+        </Modal.Header>
+        <Notification />
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShow(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 

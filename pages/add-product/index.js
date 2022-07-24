@@ -10,7 +10,6 @@ import Router from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import FormData from "form-data";
 
-
 const AddProduct = () => {
   const [show, setShow] = useState(true);
   const [images, setImages] = useState([]);
@@ -20,7 +19,7 @@ const AddProduct = () => {
     setImages(imageList);
   };
 
-  const { register, handleSubmit, errors} = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const onSubmit = async (data) => {
     try {
       const { product_name, price, category, description, product_photo } = data;
@@ -32,23 +31,12 @@ const AddProduct = () => {
       formData.append("description", description);
       formData.append("product_photo", images[0].file);
       formData.append("user_id", userId);
-      const res = await axios.post("https://api-secondhand-fsw.herokuapp.com/product",formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        toast.success("Add Product Success", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        Router.push("/home");
-    } catch (err) {
-        toast.error(`Add Product Failed`, {
+      const res = await axios.post("http://localhost:8000/product", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      toast.success("Add Product Success", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -57,6 +45,18 @@ const AddProduct = () => {
         draggable: true,
         progress: undefined,
       });
+      Router.push("/home");
+    } catch (err) {
+      toast.error(`Add Product Failed`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      console.log(err);
     }
   };
 
@@ -80,10 +80,10 @@ const AddProduct = () => {
               <Form.Select aria-label="Default select example" className="custom-rounded p-2" {...register("category", { required: "category is required" })}>
                 <option value="">Pilih Ketegori</option>
                 <option value="Hobi">Hobi</option>
-                <option value="kendaraan">Kendaran</option>
-                <option value="baju">Baju</option>
-                <option value="elektronik">Elektronik</option>
-                <option value="kesehatan">Kesehatan</option>
+                <option value="Kendaraan">Kendaran</option>
+                <option value="Baju">Baju</option>
+                <option value="Elektronik">Elektronik</option>
+                <option value="Kesehatan">Kesehatan</option>
               </Form.Select>
             </Form.Group>
             {/* <Col>{errors.category && <span className="text-sm text-red-500">{errors.category.message}</span>}</Col> */}

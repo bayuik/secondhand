@@ -4,13 +4,13 @@ import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useState } from "react";
-import Header from "../../components/Header";
+import { NavbarSearch } from "../../components";
 import { useForm } from "react-hook-form";
 import Router, { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 
 export const getStaticPaths = async () => {
-  let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product");
+  let response = await axios.get("http://localhost:8000/product");
   const data = await response.data.data.Products;
 
   const paths = data.map((Products) => {
@@ -28,10 +28,10 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const id = context.params.id;
 
-  let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product/" + id);
+  let response = await axios.get("http://localhost:8000/product/" + id);
   const data = await response.data.data.Products;
 
-  let responses = await axios.get("https://api-secondhand-fsw.herokuapp.com/profile/" + data.user_id);
+  let responses = await axios.get("http://localhost:8000/profile/" + data.user_id);
   const datas = await responses.data.data;
   return {
     props: { products: data, users: datas },
@@ -49,10 +49,12 @@ const Product = ({ products, users }) => {
     const user_id = localStorage.getItem("userId");
     const products_id = router.query.id;
     const ress = await axios
-      .post("https://api-secondhand-fsw.herokuapp.com/notifTransaction", {
+      .post("http://localhost:8000/transaction", {
         harga_tawar,
         products_id,
         user_id,
+        status: "Tawar",
+        product_owner: products.user_id,
       })
       .then((val) => {
         toast.success("Penawaran Berhasil Dikirim", {
@@ -78,22 +80,22 @@ const Product = ({ products, users }) => {
         });
       });
 
-    const res = await axios
-      .post("https://api-secondhand-fsw.herokuapp.com/transaction", {
-        harga_tawar,
-        products_id,
-        user_id,
-      })
-      .then((val) => {
-        Router.push("/home");
-      })
-      .catch((err) => {
-        alert(err);
-      });
+  //   const res = await axios
+  //     .post("http://localhost:8000/transaction", {
+  //       harga_tawar,
+  //       products_id,
+  //       user_id,
+  //     })
+  //     .then((val) => {
+  //       Router.push("/home");
+  //     })
+  //     .catch((err) => {
+  //       alert(err);
+  //     });
   };
   return (
     <Row>
-      <Header />
+      <NavbarSearch />
       <Row className="spacing mx-auto">
         <Container>
           <ToastContainer />
@@ -101,13 +103,13 @@ const Product = ({ products, users }) => {
             <Col sm={6}>
               <Carousel className="product-img">
                 <Col>
-                  <Image src={`https://api-secondhand-fsw.herokuapp.com/download/${products.product_photo}`} alt={products.product_name} className="product_img rounded-3"></Image>
+                  <Image src={`http://localhost:8000/download/${products.product_photo}`} alt={products.product_name} className="product_img rounded-3"></Image>
                 </Col>
                 <Col>
-                  <Image src={`https://api-secondhand-fsw.herokuapp.com/download/${products.product_photo}`} alt={products.product_name} className="product_img rounded-3"></Image>
+                  <Image src={`http://localhost:8000/download/${products.product_photo}`} alt={products.product_name} className="product_img rounded-3"></Image>
                 </Col>
                 <Col>
-                  <Image src={`https://api-secondhand-fsw.herokuapp.com/download/${products.product_photo}`} alt={products.product_name} className="product_img rounded-3"></Image>
+                  <Image src={`http://localhost:8000/download/${products.product_photo}`} alt={products.product_name} className="product_img rounded-3"></Image>
                 </Col>
               </Carousel>
             </Col>
@@ -128,7 +130,7 @@ const Product = ({ products, users }) => {
                 <Card.Body>
                   <Row>
                     <Col md={3}>
-                      <Image src={`https://api-secondhand-fsw.herokuapp.com/download/${users.photo}`} alt="penjual1" className="seller_img rounded-3"></Image>
+                      <Image src={`http://localhost:8000/download/${users.photo}`} alt="penjual1" className="seller_img rounded-3"></Image>
                     </Col>
                     <Col>
                       <Card.Title>{users.name}</Card.Title>
@@ -166,11 +168,11 @@ const Product = ({ products, users }) => {
                   <Card.Body>
                     <Row className="mt-0">
                       <Col md={3}>
-                        <Image src={`https://api-secondhand-fsw.herokuapp.com/download/${products.product_photo}`} alt="...." className="seller_img rounded-3"></Image>
+                        <Image src={`http://localhost:8000/download/${products.product_photo}`} alt="...." className="seller_img rounded-3"></Image>
                       </Col>
                       <Col>
                         <p className="font-14 pt-3 fw-bold">{products.product_name}</p>
-                        <p className="font-14"> Rp.{products.price.toLocaleString()}</p>
+                        <p className="font-14"> Rp.{products.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                       </Col>
                     </Row>
                   </Card.Body>
