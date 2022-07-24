@@ -34,15 +34,27 @@ const CardProductOffered = ({ id, harga_tawar, products_id, updatedAt, user_id }
         status,
       })
       .then(() => {
-        toast(<Modal harga_tawar={harga_tawar} product_name={product_name} price={price} product_photo={product_photo} name={name} city={city} phone={phone} />, {
-          position: "top-center",
-          autoClose: false,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        if (status == "Diterima") {
+          toast(<Modal harga_tawar={harga_tawar} product_name={product_name} price={price} product_photo={product_photo} name={name} city={city} phone={phone} />, {
+            position: "top-center",
+            autoClose: false,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          toast.info("Penawaran Ditolak", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
       })
       .catch((err) => {
         toast.error(`Error`, {
@@ -54,6 +66,7 @@ const CardProductOffered = ({ id, harga_tawar, products_id, updatedAt, user_id }
           draggable: true,
           progress: undefined,
         });
+        console.log(err);
       });
   };
 
