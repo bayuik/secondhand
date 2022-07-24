@@ -31,7 +31,7 @@ const AddProduct = () => {
       formData.append("description", description);
       formData.append("product_photo", images[0].file);
       formData.append("user_id", userId);
-      const res = await axios.post("http://localhost:8000/product", formData, {
+      const res = await axios.post("https://api-secondhand-fsw.herokuapp.com/product", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
