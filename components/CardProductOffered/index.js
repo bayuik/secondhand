@@ -45,7 +45,7 @@ const CardProductOffered = ({ id, harga_tawar, products_id, updatedAt, user_id }
         });
       })
       .catch((err) => {
-        toast.success(`Penawaran Gagal ${status}`, {
+        toast.error(`Error`, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
