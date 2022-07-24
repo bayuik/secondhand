@@ -1,6 +1,7 @@
 import { Modal, Image, Col, Row } from "react-bootstrap";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const Notification = () => {
   const [notifProducts, setNotifProducts] = useState([]);
@@ -10,7 +11,7 @@ const Notification = () => {
 
   const getNotifProduct = async () => {
     try {
-      let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/notifProduct");
+      let response = await axios.get("http://localhost:8000/notifProduct");
       setNotifProducts(response.data.data.NotificationsProducts);
     } catch (error) {
       console.log(error);
@@ -19,7 +20,7 @@ const Notification = () => {
 
   const getTransaction = async () => {
     try {
-      let response = await axios.get(`https://api-secondhand-fsw.herokuapp.com/transaction/${userId}`);
+      let response = await axios.get(`http://localhost:8000/transaction/${userId}`);
       setTransaction(response.data.data.Transactions);
       console.log(response.data.data.Transactions);
     } catch (error) {
@@ -29,7 +30,7 @@ const Notification = () => {
 
   const getProducts = async () => {
     try {
-      let response = await axios.get(`https://api-secondhand-fsw.herokuapp.com/product`);
+      let response = await axios.get(`http://localhost:8000/product`);
       setProducts(response.data.data.Products);
     } catch (err) {
       console.log(err);
@@ -53,17 +54,19 @@ const Notification = () => {
                 .filter(({ id }) => id === products_id)
                 .map(({ product_name, product_photo, price }) => {
                   return (
-                    <Row key={product_name} style={{ maxHeight: "100px", borderBottom: "1px solid grey" }}>
-                      <Col md={4}>
-                        <Image style={{ height: "50px" }} src={`https://api-secondhand-fsw.herokuapp.com/download/${product_photo}`} alt={product_name} />
-                      </Col>
-                      <Col>
-                        <p className="m-0">Penawaran produk</p>
-                        <p className="m-0 fw-bold">{product_name}</p>
-                        <p className="m-0 fw-bold">Rp. {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
-                        <p className="m-0 fw-bold">Ditawar Rp. {harga_tawar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
-                      </Col>
-                    </Row>
+                    <Link href="/info-penawar" key={product_name}>
+                      <Row style={{ maxHeight: "100px", borderBottom: "1px solid grey" }}>
+                        <Col md={4}>
+                          <Image style={{ height: "50px" }} src={`http://localhost:8000/download/${product_photo}`} alt={product_name} />
+                        </Col>
+                        <Col>
+                          <p className="m-0">Penawaran produk</p>
+                          <p className="m-0 fw-bold">{product_name}</p>
+                          <p className="m-0 fw-bold">Rp. {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                          <p className="m-0 fw-bold">Ditawar Rp. {harga_tawar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                        </Col>
+                      </Row>
+                    </Link>
                   );
                 })}
             </Modal.Body>
