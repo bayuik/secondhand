@@ -108,7 +108,7 @@ const Product = ({ products, users }) => {
                   <Card.Subtitle className="mb-2 text-muted">{products.category}</Card.Subtitle>
                   <Card.Text>Rp. {products.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Card.Text>
                   <Col className="d-grid gap-2 mt-4">
-                    <Button className="text-white purple-bg custom-rounded p-2" type="button" disabled={userId == products.user_id ? "true": "false"}  onClick={() => setShow(true)}>
+                    <Button className="text-white purple-bg custom-rounded p-2" type="button" disabled={userId == products.user_id ? "true": false}  onClick={() => setShow(true)}>
                       Saya tertarik dan ingin nego
                     </Button>
                   </Col>

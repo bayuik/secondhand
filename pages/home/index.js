@@ -66,7 +66,7 @@ const Home = () => {
               </Col>
             );
           })}
-        ;{isLogin && <ButtonSell />}
+        {isLogin && <ButtonSell />}
       </Row>
     </Row>
   );
