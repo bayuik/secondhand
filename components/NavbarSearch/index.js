@@ -66,6 +66,19 @@ const LoginButton = () => {
 const NavbarSearch = () => {
   const router = useRouter();
   const path = router.pathname;
+  const [isLogin, setLogin] = useState(false);
+
+  const checkLogin = () => {
+    if (window.localStorage.getItem("token") == null) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+  };
+
+  useEffect(() => {
+    checkLogin();
+  }, [isLogin]);
 
   return (
     <Col className="invisible-content">
@@ -82,7 +95,7 @@ const NavbarSearch = () => {
               </Col>
             </Form>
           </Nav>
-          {path == "/home" ? <LoginButton /> : <ListIconButton />}
+          {isLogin ? <LoginButton /> : <ListIconButton />}
         </Container>
       </Navbar>
     </Col>

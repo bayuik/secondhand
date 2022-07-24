@@ -42,7 +42,7 @@ const Profile = () => {
       formData.append("address", address);
       formData.append("phone", phone);
       formData.append("photo", images[0].file);
-      const res = await axios.put(`http://localhost:8000/profile/${userId}`, formData, {
+      const res = await axios.put(`https://api-secondhand-fsw.herokuapp.com/profile/${userId}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

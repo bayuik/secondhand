@@ -3,27 +3,40 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Moment from "moment";
 import { ToastContainer, toast } from "react-toastify";
+import { Modal } from "../../components";
 
-const CardProductOffered = ({ id, harga_tawar, products_id, updatedAt }) => {
+const CardProductOffered = ({ id, harga_tawar, products_id, updatedAt, user_id }) => {
   const [products, setProducts] = useState([]);
+  const [user, setUser] = useState([]);
+
   const getProducts = async () => {
     try {
-      let response = await axios.get(`http://localhost:8000/product`);
+      let response = await axios.get(`https://api-secondhand-fsw.herokuapp.com/product`);
       setProducts(response.data.data.Products);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const confirm = async (status, id) => {
+  const getProfile = async () => {
+    try {
+      let response = await axios.get(`https://api-secondhand-fsw.herokuapp.com/profile/${user_id}`);
+      setUser(response.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const confirm = async (status, id, harga_tawar, product_name, price, product_photo) => {
+    const { name, city, phone } = user;
     let res = await axios
-      .put(`http://localhost:8000/confirm/${id}`, {
+      .put(`https://api-secondhand-fsw.herokuapp.com/confirm/${id}`, {
         status,
       })
       .then(() => {
-        toast.success(`Penawaran Berhasil ${status}`, {
+        toast(<Modal harga_tawar={harga_tawar} product_name={product_name} price={price} product_photo={product_photo} name={name} city={city} phone={phone} />, {
           position: "top-center",
-          autoClose: 5000,
+          autoClose: false,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -46,6 +59,7 @@ const CardProductOffered = ({ id, harga_tawar, products_id, updatedAt }) => {
 
   useEffect(() => {
     getProducts();
+    getProfile();
   }, []);
   return (
     <>
@@ -59,7 +73,7 @@ const CardProductOffered = ({ id, harga_tawar, products_id, updatedAt }) => {
                   <ToastContainer />
                   <Col className="d-inline-flex">
                     <Col md={2}>
-                      <Image src={`http://localhost:8000/download/${product_photo}`} alt={product_name} className="seller_img rounded-3 me-2"></Image>
+                      <Image src={`https://api-secondhand-fsw.herokuapp.com/download/${product_photo}`} alt={product_name} className="seller_img rounded-3 me-2"></Image>
                     </Col>
                     <Col>
                       <Row>
@@ -75,10 +89,10 @@ const CardProductOffered = ({ id, harga_tawar, products_id, updatedAt }) => {
                       <Col className="font-14"> Ditawar Rp. {harga_tawar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Col>
                       <Col className="mt-3 btn-product-offered d-flex">
                         <Col className="ms-auto">
-                          <Button style={{ width: "150px" }} className="purple-outline custom-rounded p-2 me-2" type="button" onClick={() => confirm("Ditolak", id)}>
+                          <Button style={{ width: "150px" }} className="purple-outline custom-rounded p-2 me-2" type="button" onClick={() => confirm("Ditolak", id, harga_tawar, product_name, price, product_photo)}>
                             Tolak
                           </Button>
-                          <Button style={{ width: "150px" }} className="text-white purple-bg custom-rounded p-2 " type="button" onClick={() => confirm("Diterima", id)}>
+                          <Button style={{ width: "150px" }} className="text-white purple-bg custom-rounded p-2 " type="button" onClick={() => confirm("Diterima", id, harga_tawar, product_name, price, product_photo)}>
                             Terima
                           </Button>
                         </Col>

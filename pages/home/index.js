@@ -18,7 +18,7 @@ const Home = () => {
 
   const getProducts = async () => {
     try {
-      let response = await axios.get("http://localhost:8000/product");
+      let response = await axios.get("https://api-secondhand-fsw.herokuapp.com/product");
       setProducts(response.data.data.Products);
     } catch (error) {
       console.log(error);
@@ -28,7 +28,7 @@ const Home = () => {
   const checkProfile = async () => {
     const userId = localStorage.getItem("userId");
     try {
-      let res = await axios.get(`http://localhost:8000/profile/${userId}`);
+      let res = await axios.get(`https://api-secondhand-fsw.herokuapp.com/profile/${userId}`);
       const { city, address, phone } = res.data.data;
       if (city == null && address == null && phone == null) {
         Router.push("/profile");
@@ -55,7 +55,7 @@ const Home = () => {
               <Col key={id} md={1} style={{ margin: "50px" }}>
                 <Card style={{ width: "200px" }}>
                   <Card.Link href={`/product-info/${id}`} className="text-decoration-none text-dark">
-                    <Card.Img variant="top" src={`http://localhost:8000/download/${product_photo}`} style={{ height: "150px" }} />
+                    <Card.Img variant="top" src={`https://api-secondhand-fsw.herokuapp.com/download/${product_photo}`} style={{ height: "150px" }} />
                     <Card.Body>
                       <Card.Title>{product_name}</Card.Title>
                       <Card.Text style={{ fontSize: "13px", color: "#8A8A8A" }}>{category}</Card.Text>

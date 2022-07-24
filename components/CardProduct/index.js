@@ -14,7 +14,6 @@ const CardProduct = () => {
           </Card.Body>
         </Card>
       </Col>
-     
     </Row>
   );
 };
