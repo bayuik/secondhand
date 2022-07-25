@@ -16,7 +16,7 @@ const Modal = ({ id, harga_tawar, product_name, price, product_photo, name, city
           <p className="font-14 fw-bold">Yeay kamu berhasil mendapatkan harga yang sesuai</p>
           <p className="mb-2 pb-2 text-muted font-14">Segera hubungi pembeli melalui whatsapp untuk transaksi selanjutnya</p>
           <Card className="modal-card">
-            <Card.Title className="font-14 text-center pt-3 fw-bold">Jam Tangan Casio</Card.Title>
+            <Card.Title className="font-14 text-center pt-3 fw-bold">Product Match</Card.Title>
             <Card.Body>
               <Row>
                 <Col md={3}>
