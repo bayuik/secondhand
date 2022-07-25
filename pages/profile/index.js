@@ -13,6 +13,7 @@ import FormData from "form-data";
 
 const Profile = () => {
   const [show, setShow] = useState(true);
+  const [user, setUsers] = useState([]);
   const [images, setImages] = useState([]);
   const [userId, setUserId] = useState(null);
   const maxNumber = 69;
@@ -28,7 +29,17 @@ const Profile = () => {
     setUserId(window.localStorage.getItem("userId"));
   };
 
+  const getUser = async () => {
+    try {
+      let response = await axios.get(`https://api-secondhand-fsw.herokuapp.com/profile/${userId}`);
+      setUsers(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   useEffect(() => {
+    getUser();
     checkLogin();
   }, []);
 
@@ -111,19 +122,19 @@ const Profile = () => {
               </Col>
               <Form.Group controlId="name" className="form-spacing">
                 <Form.Label className="fw-bold font-control">Nama </Form.Label>
-                <Form.Control type="text" placeholder="Nama" className="custom-rounded p-2 font-control form-input" {...register("name", { required: "name is required" })} />
+                <Form.Control type="text" placeholder="Nama" value={user.name} className="custom-rounded p-2 font-control form-input" {...register("name", { required: "name is required" })} />
               </Form.Group>
               <Form.Group controlId="kota" className="form-spacing">
                 <Form.Label className="fw-bold font-control">Kota</Form.Label>
-                <Form.Control type="text" placeholder="Contoh: johndee@gmail.com" className="custom-rounded p-2 font-control form-input" {...register("city", { required: "city is required" })} />
+                <Form.Control type="text" placeholder="Kota" value={user.city} className="custom-rounded p-2 font-control form-input" {...register("city", { required: "city is required" })} />
               </Form.Group>
               <Form.Group controlId="alamat" className="form-spacing">
                 <Form.Label className="fw-bold font-control">Alamat</Form.Label>
-                <textarea className="form-control custom-rounded p-2 font-control " placeholder="Contoh: Jalan Ikan Hiu 33" {...register("address", { required: "address is required" })}></textarea>
+                <textarea className="form-control custom-rounded p-2 font-control " value={user.address} placeholder="Contoh: Jalan Ikan Hiu 33" {...register("address", { required: "address is required" })}></textarea>
               </Form.Group>
               <Form.Group controlId="hp" className="form-spacing">
                 <Form.Label className="fw-bold font-control">No Handphone</Form.Label>
-                <Form.Control type="text" placeholder="contoh: +628123456789" className="custom-rounded p-2 font-control form-input" {...register("phone")} />
+                <Form.Control type="text" placeholder="contoh: +628123456789" value={user.phone} className="custom-rounded p-2 font-control form-input" {...register("phone")} />
               </Form.Group>
               <Col className="d-grid gap-2 mt-4 form-spacing">
                 <button className="btn text-white purple-bg custom-rounded p-2 ms-2 font-control" type="submit">
