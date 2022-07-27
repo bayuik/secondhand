@@ -1,4 +1,4 @@
-import { Col, Row, Image } from "react-bootstrap";
+import { Col, Row, Image, Card } from "react-bootstrap";
 import { NavbarSearch } from "../../components";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import CardProduct from "../../components/CardProduct";
@@ -10,18 +10,44 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 function Product() {
-  const [products, setProduct] = useState([]);
+  const [product, setProducts] = useState([]);
+  const [user, setUsers] = useState([]);
+  const [isLogin, setIsLogin] = useState(false);
+  
+  const checkLogin = () => {
+    if (localStorage.getItem("token")) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  };
 
+  const getUsers = async () => {
+    const userId = localStorage.getItem("userId");
+    try {
+      let response = await axios.get(`https://api-secondhand-fsw.herokuapp.com/profile/${userId}`);
+      setUsers(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getProducts = async () => {
+    const userId = localStorage.getItem("userId");
+    try {
+      let response = await axios.get(`https://api-secondhand-fsw.herokuapp.com/my-products/${userId}`);
+      setProducts(response.data.data.Products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   //memanggil func getproducts
   useEffect(() => {
+    getUsers();
     getProducts();
+    checkLogin();
   }, []);
 
-  // fetch data api
-  const getProducts = async () => {
-    const response = await axios.get("http://localhost:3000/");
-    setProduct(response.data);
-  };
 
   return (
     <Row>
@@ -38,7 +64,7 @@ function Product() {
               <div className="profile-card border border-1 shadow bg-body rounded">
                 <div className="profile-img d-inline">
                   <Image
-                    src="/penjual1.png"
+                    src={`https://api-secondhand-fsw.herokuapp.com/download/${user.photo}`} 
                     width="50"
                     height="50"
                     className="rounded"
@@ -46,12 +72,12 @@ function Product() {
                   ></Image>
                 </div>
                 <div className="profile-name d-inline">
-                  Nama Penjual
+                  {user.name}
                   <br />
-                  <font className="profile-kota ">Kota</font>
+                  <font className="profile-kota ">{user.city}</font>
                 </div>
                 <div className="profile-button d-inline float-end mt-2">
-                  <Link href={`/profile/edit/${products.id}`}>
+                  <Link href="/profile">
                     <button type="button" className="btn btn-outline-dark">
                       Edit
                     </button>
@@ -98,18 +124,25 @@ function Product() {
                 <Card />
               </div>
             ))} */}
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
+          {product &&
+          product.map(({ id, product_photo, product_name, category, price }) => {
+          return(
+          <Row>
+            <Col key={id} md={2} className="me-4 mb-4">
+              <Card style={{ width: "14rem" }}>
+                <div>
+                  <Card.Img variant="top" src={`https://api-secondhand-fsw.herokuapp.com/download/${product_photo}`} className="p-2" height="140px" />
+                </div>
+                <Card.Body>
+                  <Card.Title>{product_name}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted font-control ">{category}</Card.Subtitle>
+                  <Card.Text>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+          );
+          })}
           </div>
         </div>
       </div>
