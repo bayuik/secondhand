@@ -13,7 +13,11 @@ const ListIconButton = () => {
     <>
       <ListGroup horizontal>
         <Col className="ms-auto">
-          <FontAwesomeIcon icon={faList} id="btnIcon" className="icons" />
+          <Link href="/daftar-jual-seller">
+            <a className="text-dark">
+            <FontAwesomeIcon icon={faList} id="btnIcon" className="icons"/>
+            </a>
+          </Link>
           <FontAwesomeIcon icon={faBell} id="btnIcon" className="icons" onClick={() => setShow(true)} />
           <Link href="/profile">
             <a className="text-dark">
